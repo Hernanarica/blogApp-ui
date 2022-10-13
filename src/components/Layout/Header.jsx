@@ -1,24 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { useSelector }     from "react-redux";
+import { NavbarProtected, NavbarPublic } from "../Header";
 
 export function Header() {
-	return (
-		<header className="p-4">
-			<nav>
-				<ul className="flex items-center gap-4">
-					<li>
-						<NavLink to="/">Home</NavLink>
-					</li>
-					<li>
-						<NavLink to="/login">Login</NavLink>
-					</li>
-					<li>
-						<NavLink to="/register">Register</NavLink>
-					</li>
-					<li>
-						<NavLink to="/profile">Profile</NavLink>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	);
+	const { isAuthenticated } = useSelector(state => state.auth);
+	
+	return !isAuthenticated
+		? <header className="p-4"> <NavbarPublic /> </header>
+		: <header className="p-4"> <NavbarProtected /> </header>
 }

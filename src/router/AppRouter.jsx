@@ -1,23 +1,36 @@
-import { Route, Routes } from "react-router-dom";
-import { Login }         from "../views/Login";
-import { Register }      from "../views/Register";
-import { Profile }       from "../views/Profile";
-import { Home }           from "../views/Home";
-import { Footer, Header } from "../components";
+import { Route, Routes }   from "react-router-dom";
+import { Login }           from "../views/Login";
+import { Register }        from "../views/Register";
+import { Profile }         from "../views/Profile";
+import { Home }            from "../views/Home";
+import { Header }          from "../components";
+import { ProtectedRoutes } from "./ProtectedRoutes";
+import { Dashboard }       from "../views/Dashboard";
+import { Layout }          from "../views/Layout";
+import { PublicRoutes }    from "./PublicRoutes";
 
 export function AppRouter() {
 	return (
 		<>
 			<Header />
-			
 			<Routes>
-				<Route path="/" element={ <Home /> } />
-				<Route path="/login" element={ <Login /> } />
-				<Route path="/profile" element={ <Profile /> } />
-				<Route path="/register" element={ <Register /> } />
+				<Route path="/" element={ <Layout /> }>
+					
+					{/*Rutas publicas*/}
+					<Route index element={ <Home /> } />
+					<Route path="/" element={ <PublicRoutes /> }>
+						<Route path="login" element={ <Login /> } />
+						<Route path="register" element={ <Register /> } />
+					</Route>
+					
+					{/*Rutas protegidas*/}
+					<Route path="/dashboard" element={ <ProtectedRoutes/> }>
+						<Route index element={ <Dashboard /> } />
+						<Route path="profile" element={ <Profile /> } />
+					</Route>
+					
+				</Route>
 			</Routes>
-			
-			<Footer />
 		</>
 	);
 }

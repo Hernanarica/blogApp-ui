@@ -6,15 +6,18 @@ import { AppRouter }      from "./router/AppRouter";
 import App                from './App'
 
 import './css/index.css';
+import { AuthProvider }   from "./providers/AuthProvider";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StoreProvider>
-      <RouterProvider>
-        <AppRouter>
-          <App />
-        </AppRouter>
-      </RouterProvider>
+      <AuthProvider>
+        <RouterProvider>
+          <AppRouter>
+            <App />
+          </AppRouter>
+        </RouterProvider>
+      </AuthProvider>
     </StoreProvider>
   </React.StrictMode>
 )
