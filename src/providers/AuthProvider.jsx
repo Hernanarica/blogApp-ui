@@ -2,6 +2,7 @@ import { useEffect }                from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie }                from "../helpers";
 import { login }                    from "../state/slices/index.js";
+import axios                        from "axios";
 
 export function AuthProvider({ children }) {
 	const { isAuthenticated } = useSelector(state => state.auth);
@@ -11,7 +12,13 @@ export function AuthProvider({ children }) {
 		
 		if (!getCookie('access_token')) return;
 		
-		dispatch(login(getCookie('access_token')));
+		axios.get('http://127.0.0.1:8000/api/user', {
+			headers: {
+				'Authorization': `Bearer ${ getCookie('access_token') }`
+			}
+		}).then(({ data }) => {
+			dispatch(login(data.data));
+		});
 		
 	}, []);
 	

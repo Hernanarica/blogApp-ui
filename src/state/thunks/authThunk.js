@@ -4,10 +4,10 @@ import { setCookie }    from "../../helpers/index.js";
 
 export function loginThunk(userData) {
 	return async (dispatch) => {
-		const res = await loginService(userData);
+		const { data, access_token } = await loginService(userData);
 		
-		setCookie('access_token', res.access_token)
+		setCookie('access_token', access_token)
 		
-		dispatch(login(res));
+		dispatch(login(data));
 	};
 }
