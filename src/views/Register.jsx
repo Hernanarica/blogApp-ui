@@ -1,6 +1,19 @@
+import { useForm } from "react-hook-form";
+import axios       from "axios";
+
 export function Register() {
+	const { handleSubmit, register, formState } = useForm();
+	
+	const onSubmit = data => {
+		axios.post('http://127.0.0.1:8000/api/users', {
+			...data
+		}).then(r => {
+			console.log(r);
+		})
+	};
+	
 	return (
-		<form action="#">
+		<form action="#" method="POST" onSubmit={ handleSubmit(onSubmit) }>
 			<div>
 				<label htmlFor="name">Name</label>
 				<input
@@ -8,6 +21,7 @@ export function Register() {
 					name="name"
 					id="name"
 					className="border border-2 rounded"
+					{ ...register('name') }
 				/>
 			</div>
 			<div>
@@ -17,6 +31,7 @@ export function Register() {
 					name="email"
 					id="email"
 					className="border border-2 rounded"
+					{ ...register('email') }
 				/>
 			</div>
 			<div>
@@ -26,6 +41,7 @@ export function Register() {
 					name="password"
 					id="password"
 					className="border border-2 rounded"
+					{ ...register('password') }
 				/>
 			</div>
 			<div>
@@ -35,6 +51,7 @@ export function Register() {
 					name="password_confirmation"
 					id="password_confirmation"
 					className="border border-2 rounded"
+					{ ...register('password_confirmation') }
 				/>
 			</div>
 			<button>Register</button>
