@@ -10,8 +10,7 @@ const axiosInstance = axios.create({
 
 export async function logoutService(userData) {
 	try {
-		const res = await axiosInstance.post('/logout');
-		console.log(res);
+		await axiosInstance.post('/logout');
 	} catch (err) {
 		return err.response.data.errors;
 	}
