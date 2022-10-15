@@ -6,7 +6,8 @@ export function loginThunk(userData) {
 	return async (dispatch) => {
 		const { data, access_token } = await loginService(userData);
 		
-		setCookie('access_token', access_token)
+		setCookie('access-token', access_token);
+		setCookie('user-credentials', JSON.stringify(data));
 		
 		dispatch(login(data));
 	};
