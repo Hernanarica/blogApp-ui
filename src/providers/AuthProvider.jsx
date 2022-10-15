@@ -17,6 +17,8 @@ export function AuthProvider({ children }) {
 				'Authorization': `Bearer ${ getCookie('access_token') }`
 			}
 		}).then(({ data }) => {
+			if (data.status !== 'success') return;
+			
 			dispatch(login(data.data));
 		});
 		
