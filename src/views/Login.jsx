@@ -4,10 +4,10 @@ import { loginThunk }  from "../state/thunks/index.js";
 
 export function Login() {
 	const dispatch = useDispatch();
-	const { handleSubmit, register, formState } = useForm();
+	const { handleSubmit, register, formState: { errors }, setError } = useForm();
 	
 	const onSubmit = (userData) => {
-		dispatch(loginThunk(userData));
+		dispatch(loginThunk(userData, setError));
 	}
 	
 	return (
@@ -29,9 +29,15 @@ export function Login() {
 					name="password"
 					id="password"
 					className="border border-2 rounded"
+					autoComplete="password"
 					{ ...register('password')}
 				/>
 			</div>
+			
+			{
+				errors.credentialsError && <p {...register('credentialsError', { required: false })}>{ errors.credentialsError.message }</p>
+			}
+			
 			<button>Login</button>
 		</form>
 	);
