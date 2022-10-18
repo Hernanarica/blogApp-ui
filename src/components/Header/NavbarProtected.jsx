@@ -14,8 +14,8 @@ export function NavbarProtected() {
 		
 		await logoutService();
 		
-		deleteCookie('access-token');
-		deleteCookie('user-credentials');
+		deleteCookie('token');
+		deleteCookie('credentials');
 	};
 	
 	return (

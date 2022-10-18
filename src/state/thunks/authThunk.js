@@ -10,9 +10,11 @@ export function loginThunk(userData, setError) {
 			return setError('credentialsError', { message: data.message });
 		}
 		
-		setCookie('token', data.token);
-		setCookie('credentials', JSON.stringify(data.data));
+		const { data: credentials, token } = data;
 		
-		dispatch(login(data.data));
+		setCookie('token', token);
+		setCookie('credentials', JSON.stringify(credentials));
+		
+		dispatch(login(credentials));
 	};
 }
