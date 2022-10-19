@@ -8,9 +8,9 @@ export function AuthProvider({ children }) {
 	
 	useEffect(() => {
 		
-		if (!getCookie('access-token')) return;
+		if (!getCookie('token')) return;
 		
-		const userCredentials = JSON.parse(getCookie('user-credentials'));
+		const userCredentials = JSON.parse(getCookie('credentials'));
 		
 		dispatch(login(userCredentials));
 		
