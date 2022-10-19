@@ -19,7 +19,16 @@ export function Login() {
 					name="email"
 					id="email"
 					className="border border-2 rounded"
-					{ ...register('email')}
+					{ ...register('email', {
+						required: {
+							value: true,
+							message: 'El email es obligatorio'
+						},
+						pattern: {
+							value: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+							message: 'El email debe tener formato de email'
+						}
+					})}
 				/>
 			</div>
 			<div>
@@ -30,9 +39,22 @@ export function Login() {
 					id="password"
 					className="border border-2 rounded"
 					autoComplete="password"
-					{ ...register('password')}
+					{ ...register('password', {
+						required: {
+							value: true,
+							message: 'La contraseña es obligatoria'
+						}
+					})}
 				/>
 			</div>
+			
+			{
+				errors.email && <p>{ errors.email.message }</p>
+			}
+			
+			{
+				errors.password && <p>{ errors.password.message }</p>
+			}
 			
 			{
 				errors.credentialsError && <p {...register('credentialsError', { required: false })}>{ errors.credentialsError.message }</p>
