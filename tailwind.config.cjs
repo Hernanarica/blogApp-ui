@@ -5,7 +5,11 @@ module.exports = {
 		'./src/**/*.jsx'
 	],
 	theme: {
-		extend: {}
+		extend: {
+			backgroundImage: {
+				'avatar-image': "url('https://i.pravatar.cc/50')"
+			}
+		}
 	},
 	plugins: []
 };
