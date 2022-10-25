@@ -1,13 +1,20 @@
 import { loginService } from "../../services/index.js";
-import { login }        from "../slices/index.js";
-import { setCookie }    from "../../helpers/index.js";
+import { login } from "../slices/index.js";
+import { setCookie } from "../../helpers/index.js";
 
-export function loginThunk(userData) {
+export function loginThunk(userData, setError) {
 	return async (dispatch) => {
-		const { data, access_token } = await loginService(userData);
+		const data = await loginService(userData);
 		
-		setCookie('access_token', access_token)
+		if (data.status === 'error') {
+			return setError('credentialsError', { message: data.message });
+		}
 		
-		dispatch(login(data));
+		const { data: credentials, token } = data;
+		
+		setCookie('token', token);
+		setCookie('credentials', JSON.stringify(credentials));
+		
+		dispatch(login(credentials));
 	};
 }

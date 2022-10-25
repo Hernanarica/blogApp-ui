@@ -1,24 +1,22 @@
-import { Route, Routes }   from "react-router-dom";
-import { Login }           from "../views/Login";
-import { Register }        from "../views/Register";
-import { Profile }         from "../views/Profile";
-import { Home }            from "../views/Home";
-import { Header }          from "../components";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "../views/Login";
+import { Register } from "../views/Register";
+import { Profile } from "../views/Profile";
+import { Home } from "../views/Home";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import { Dashboard }       from "../views/Dashboard";
-import { Layout }          from "../views/Layout";
-import { PublicRoutes }    from "./PublicRoutes";
+import { Dashboard } from "../views/Dashboard";
+import { Layout } from "../views/Layout";
+import { PublicRoutes } from "./PublicRoutes";
 
 export function AppRouter() {
 	return (
 		<>
-			<Header />
 			<Routes>
 				<Route path="/" element={ <Layout /> }>
 					
 					{/*Rutas publicas*/}
 					<Route index element={ <Home /> } />
-					<Route path="/" element={ <PublicRoutes /> }>
+					<Route element={ <PublicRoutes /> }>
 						<Route path="login" element={ <Login /> } />
 						<Route path="register" element={ <Register /> } />
 					</Route>
