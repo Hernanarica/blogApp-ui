@@ -3,21 +3,37 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
 
 import '../css/textEditor.css';
+import axios from 'axios';
+import { getCookie } from '../helpers/index.js';
 
 const editorConfiguration = {
 	toolbar: [ 'Alignment', 'bold', 'italic', 'bulletedList', 'numberedList', 'Link' ]
 };
 
 export function TextEditor() {
-	const [ comment, setComment ] = useState();
+	const [ comment, setComment ] = useState('');
 	
 	const onChange = (e, editor) => {
 		setComment(editor.getData());
-		// console.log(editor.getData());
 	}
 	
 	const saveComment = () => {
-		console.log(comment);
+		if (comment.length === 0) return;
+	
+		axios.post('http://127.0.0.1:8000/api/comments', {
+			'user_id': 11,
+			'post_id': 2,
+			'comment': comment,
+		}, {
+			'headers': {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${ getCookie('access_token') }`
+			}
+		}).then(r => {
+			console.log(r);
+			
+			setComment('');
+		});
 	}
 	
 	return (
@@ -25,7 +41,7 @@ export function TextEditor() {
 			<CKEditor
 				editor={ Editor }
 				config={ editorConfiguration }
-				data="<p>Hello from CKEditor 5!</p>"
+				data={ comment}
 				// onReady={ editor => {
 				// 	// You can store the "editor" and use when it is needed.
 				// 	console.log( 'Editor is ready to use!', editor );
