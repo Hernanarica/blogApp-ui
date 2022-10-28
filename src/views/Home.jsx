@@ -51,7 +51,6 @@ export function Home() {
 								aria-hidden="true"
 								className="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen"
 							>
-								<div className="absolute inset-y-0 right-1/2 w-full rounded-r-3xl bg-gray-50 lg:right-72" />
 								<svg
 									className="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12"
 									width={404}
@@ -86,7 +85,6 @@ export function Home() {
 								</svg>
 							</div>
 							<div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
-								{/* Testimonial card*/}
 								<div className="relative overflow-hidden rounded-2xl pt-64 pb-10 shadow-xl">
 									<img
 										className="absolute inset-0 h-full w-full object-cover"
@@ -130,7 +128,6 @@ export function Home() {
 							</div>
 						</div>
 						<div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
-							{/* Content area */}
 							<div className="pt-12 sm:pt-16 lg:pt-20">
 								<h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
 									Nuestra mision
@@ -148,7 +145,6 @@ export function Home() {
 									</p>
 								</div>
 							</div>
-							{/* Stats section */}
 							<div className="mt-10">
 								<dl className="grid grid-cols-2 gap-x-4 gap-y-8">
 									<div className="border-t-2 border-gray-100 pt-6">
@@ -186,7 +182,6 @@ export function Home() {
 						</div>
 					</div>
 				</div>
-			
 			</Wrapper>
 		</>
 	);
