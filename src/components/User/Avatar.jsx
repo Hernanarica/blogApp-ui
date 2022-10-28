@@ -11,7 +11,7 @@ export function Avatar() {
 	
 	return (
 		<>
-			<button className="w-10 h-10 bg-avatar-image rounded-full" onClick={ handleShowMenu }></button>
+			<button className="w-10 h-10 bg-avatar-image align-middle rounded-full" onClick={ handleShowMenu }></button>
 			
 			{
 				showMenu && (
