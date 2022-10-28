@@ -14,7 +14,7 @@ export function Header() {
 	
 	return (
 		<header className="bg-gray-800 text-white px-4 py-2">
-			<nav>
+			<nav className="max-w-7xl md:mx-auto">
 				<div className="md:hidden flex items-center justify-between">
 					<button className="align-middle" onClick={ handleMenu }>
 						{
@@ -23,9 +23,9 @@ export function Header() {
 								: <Bars3Icon className="w-10 h-10" />
 						}
 					</button>
-					<div className="relative">
-						<Avatar />
-					</div>
+					{
+						isAuthenticated && <div className="relative"> <Avatar /> </div>
+					}
 				</div>
 				
 				<ul className={ `${ isOpen ? 'block' : 'hidden' } mt-2 space-y-2 md:flex md:items-center md:gap-3 md:mt-0 md:space-y-0` }>

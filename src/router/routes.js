@@ -1,8 +1,4 @@
-import { Home }      from "../views/Home.jsx";
-import { Login }     from "../views/Login.jsx";
-import { Register }  from "../views/Register.jsx";
-import { Dashboard } from "../views/Dashboard.jsx";
-import { Profile }   from "../views/Profile.jsx";
+import { Home, Login, Register, Dashboard, TextEditor, Profile } from "../views/index.js";
 
 export const routes = {
 	publicRoutes: [
@@ -43,6 +39,12 @@ export const routes = {
 			path: '/dashboard/profile',
 			end: '/dashboard',
 			component: Profile
+		},
+		{
+			name: 'Editor',
+			path: '/dashboard/editor',
+			end: '/editor',
+			component: TextEditor
 		}
 	]
 };
