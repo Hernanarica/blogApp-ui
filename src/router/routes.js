@@ -1,4 +1,4 @@
-import { Home, Login, Register, Dashboard, TextEditor, Profile } from "../views/index.js";
+import { Home, Login, Register, Dashboard, Profile } from "../views";
 
 export const routes = {
 	publicRoutes: [
@@ -39,12 +39,6 @@ export const routes = {
 			path: '/dashboard/profile',
 			end: '/dashboard',
 			component: Profile
-		},
-		{
-			name: 'Editor',
-			path: '/dashboard/editor',
-			end: '/editor',
-			component: TextEditor
 		}
 	]
 };

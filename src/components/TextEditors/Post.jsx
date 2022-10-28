@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Editor from 'ckeditor5-custom-build';
-
-import '../css/textEditor.css';
 import axios from 'axios';
-import { getCookie } from '../helpers/index.js';
+import Editor from 'ckeditor5-custom-build';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { getCookie } from '../../helpers/index.js';
+
+import '../../css/textEditor.css';
 
 const editorConfiguration = {
 	toolbar: [ 'Alignment', 'bold', 'italic', 'bulletedList', 'numberedList', 'Link' ]
 };
 
-export function TextEditor() {
+export function Post() {
 	const [ comment, setComment ] = useState('');
 	
 	const onChange = (e, editor) => {
@@ -19,7 +19,7 @@ export function TextEditor() {
 	
 	const saveComment = () => {
 		if (comment.length === 0) return;
-	
+		
 		axios.post('http://127.0.0.1:8000/api/comments', {
 			'user_id': 11,
 			'post_id': 2,
