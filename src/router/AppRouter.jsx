@@ -1,12 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Login } from "../views/Login";
-import { Register } from "../views/Register";
-import { Profile } from "../views/Profile";
-import { Home } from "../views/Home";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import { Dashboard } from "../views/Dashboard";
-import { Layout } from "../views/Layout";
-import { PublicRoutes } from "./PublicRoutes";
+import { PublicRoutes }                                                  from "./PublicRoutes";
+import { Home, Login, Register, Dashboard, TextEditor, Profile, Layout } from "../views/index.js";
 
 export function AppRouter() {
 	return (
@@ -25,6 +20,7 @@ export function AppRouter() {
 					<Route path="/dashboard" element={ <ProtectedRoutes/> }>
 						<Route index element={ <Dashboard /> } />
 						<Route path="profile" element={ <Profile /> } />
+						<Route path="editor" element={ <TextEditor /> } />
 					</Route>
 					
 				</Route>
