@@ -4,7 +4,7 @@ import { getCookie } from "../helpers/index.js";
 const axiosInstance = axios.create({
 	baseURL: 'http://127.0.0.1:8000/api',
 	headers: {
-		Authorization: `Bearer ${ getCookie('access_token') }`
+		Authorization: `Bearer ${ getCookie('token') }`
 	}
 });
 

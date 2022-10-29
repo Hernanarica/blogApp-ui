@@ -23,7 +23,7 @@ function useTextEditor() {
 		},{
 			'headers': {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${ getCookie('access_token') }`
+				Authorization: `Bearer ${ getCookie('token') }`
 			}
 		}).then(r => {
 			console.log(r);
