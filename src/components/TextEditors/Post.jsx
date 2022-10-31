@@ -48,7 +48,6 @@ const editorConfiguration = {
 };
 
 const config = {
-	title: 'Mi titulo de ejemplo',
 	visible: 0,
 	published: '2022-10-31'
 }
