@@ -1,19 +1,45 @@
 import { useForm } from "react-hook-form";
-import axios       from "axios";
+import axios from "axios";
+import { useState } from 'react';
+
+const usersInstance = axios.create({
+	baseURL: 'http://127.0.0.1:8000/api/users',
+	headers: {
+		'Content-Type': 'multipart/form-data'
+	},
+	method: 'POST'
+});
 
 export function Register() {
-	const { handleSubmit, register, formState: { errors }, getValues } = useForm();
+	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
+	const [ file, setFile ] = useState(null);
 	
 	const onSubmit = data => {
-		axios.post('http://127.0.0.1:8000/api/users', {
-			...data
-		}).then(r => {
+		const formData = new FormData(document.getElementById('form'));
+		formData.append('name', data.name);
+		formData.append('email', data.email);
+		formData.append('password', data.password);
+		formData.append('password_confirmation', data.password_confirmation);
+		formData.append('image', file);
+		
+		usersInstance.post('', formData)
+			.then(r => {
 			console.log(r);
-		})
+		});
+	};
+	
+	const onChange = (e) => {
+		setFile(e.target.files[0]);
 	};
 	
 	return (
-		<form action="#" method="POST" onSubmit={ handleSubmit(onSubmit) }>
+		<form
+			action="#"
+			method="POST"
+			onSubmit={ handleSubmit(onSubmit) }
+			encType="multipart/form-data"
+			id="form"
+		>
 			<div>
 				<label htmlFor="name">Name</label>
 				<input
@@ -24,7 +50,7 @@ export function Register() {
 					{ ...register('name', {
 						required: {
 							value: true,
-							message: 'EL nombre es obligatorio'
+							message: 'El nombre es obligatorio'
 						}
 					}) }
 				/>
@@ -74,7 +100,7 @@ export function Register() {
 					name="password_confirmation"
 					id="password_confirmation"
 					className="border border-2 rounded"
-					{ ...register('passwordConfirmation', {
+					{ ...register('password_confirmation', {
 						required: {
 							value: true,
 							message: 'La confirmacion de contraseña es obligatoria'
@@ -85,6 +111,17 @@ export function Register() {
 						},
 						validate: value => value === getValues('password') || 'Deben ser iguales'
 					}) }
+				/>
+			</div>
+			
+			<div>
+				<label htmlFor="image">Imagen</label>
+				<input
+					type="file"
+					name="image"
+					id="image"
+					{ ...register('image') }
+					onChange={ onChange }
 				/>
 			</div>
 			
