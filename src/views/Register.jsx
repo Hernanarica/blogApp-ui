@@ -1,35 +1,16 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useState } from 'react';
-
-const usersInstance = axios.create({
-	baseURL: 'http://127.0.0.1:8000/api/users',
-	headers: {
-		'Content-Type': 'multipart/form-data'
-	},
-	method: 'POST'
-});
 
 export function Register() {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
-	const [ file, setFile ] = useState(null);
+	const { handleSubmit, register, formState: { errors }, getValues } = useForm();
 	
 	const onSubmit = data => {
 		const formData = new FormData(document.getElementById('form'));
-		formData.append('name', data.name);
-		formData.append('email', data.email);
-		formData.append('password', data.password);
-		formData.append('password_confirmation', data.password_confirmation);
-		formData.append('image', file);
 		
-		usersInstance.post('', formData)
+		axios.post('http://127.0.0.1:8000/api/users', formData)
 			.then(r => {
 			console.log(r);
 		});
-	};
-	
-	const onChange = (e) => {
-		setFile(e.target.files[0]);
 	};
 	
 	return (
@@ -121,7 +102,6 @@ export function Register() {
 					name="image"
 					id="image"
 					{ ...register('image') }
-					onChange={ onChange }
 				/>
 			</div>
 			
@@ -138,7 +118,7 @@ export function Register() {
 			}
 			
 			{
-				errors.passwordConfirmation && <p>{ errors.passwordConfirmation.message }</p>
+				errors.password_confirmation && <p>{ errors.password_confirmation.message }</p>
 			}
 			
 			<button>Register</button>
