@@ -1,16 +1,16 @@
-import axios         from "axios";
+import axios from "axios";
 import { getCookie } from "../helpers/index.js";
 
-const axiosInstance = axios.create({
-	baseURL: 'http://127.0.0.1:8000/api',
-	headers: {
-		Authorization: `Bearer ${ getCookie('token') }`
-	}
-});
-
-export async function logoutService(userData) {
+export async function logoutService() {
 	try {
-		await axiosInstance.post('/logout');
+		const url = 'http://127.0.0.1:8000/api/logout'
+		const config = {
+			headers: {
+				Authorization: `Bearer ${ getCookie('token') }`
+			}
+		}
+		
+		await axios.post(url, null, config);
 	} catch (err) {
 		return err.response.data.errors;
 	}
