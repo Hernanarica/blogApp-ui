@@ -1,22 +1,23 @@
 import { Home, Login, Register, Dashboard, Profile } from "../views";
+import myRoute from '../types/routes.js';
 
 export const routes = {
 	publicRoutes: [
 		{
 			name: 'Home',
-			path: '/',
+			path: myRoute.public.home,
 			end: '/',
 			component: Home
 		},
 		{
 			name: 'Login',
-			path: '/login',
+			path: myRoute.public.login,
 			end: '/',
 			component: Login
 		},
 		{
 			name: 'Register',
-			path: '/register',
+			path: myRoute.public.register,
 			end: '/',
 			component: Register
 		}
@@ -24,19 +25,19 @@ export const routes = {
 	protectedRoutes: [
 		{
 			name: 'Home',
-			path: '/',
+			path: myRoute.public.home,
 			end: '/dashboard',
 			component: Home
 		},
 		{
 			name: 'Dashboard',
-			path: '/dashboard',
+			path: myRoute.private.dashboard,
 			end: '/dashboard',
 			component: Dashboard
 		},
 		{
 			name: 'Profile',
-			path: '/dashboard/profile',
+			path: myRoute.private.profile,
 			end: '/dashboard',
 			component: Profile
 		}

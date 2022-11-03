@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 import { Home, Login, Register, Dashboard, Profile, Layout } from "../views/index.js";
+import myRoute from '../types/routes.js';
 
 export function AppRouter() {
 	return (
@@ -9,17 +10,17 @@ export function AppRouter() {
 			<Routes>
 				<Route path="/" element={ <Layout /> }>
 					
-					{/*Rutas publicas*/}
+					{/* Public myRoute */}
 					<Route index element={ <Home /> } />
 					<Route element={ <PublicRoutes /> }>
-						<Route path="login" element={ <Login /> } />
-						<Route path="register" element={ <Register /> } />
+						<Route path={ myRoute.public.login } element={ <Login /> } />
+						<Route path={ myRoute.public.register } element={ <Register /> } />
 					</Route>
 					
-					{/*Rutas protegidas*/}
-					<Route path="/dashboard" element={ <ProtectedRoutes/> }>
+					{/* Private myRoute */}
+					<Route path={ myRoute.private.dashboard } element={ <ProtectedRoutes/> }>
 						<Route index element={ <Dashboard /> } />
-						<Route path="profile" element={ <Profile /> } />
+						<Route path={ myRoute.private.profile } element={ <Profile /> } />
 					</Route>
 					
 				</Route>
