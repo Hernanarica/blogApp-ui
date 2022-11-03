@@ -6,14 +6,19 @@ import '../../css/textEditor.css';
 
 const editorConfiguration = {
 	toolbar: [
+		'fontSize',
+		'fontColor',
+		'fontFamily',
+		'alignment',
 		'bold',
 		'italic',
+		'underline',
 		'link',
 		'bulletedList',
 		'numberedList',
 		'outdent',
 		'indent',
-		'imageUpload',
+		// 'imageUpload',
 		'imageInsert',
 		'blockQuote',
 		'mediaEmbed',
@@ -21,11 +26,6 @@ const editorConfiguration = {
 		'redo',
 		'code',
 		'codeBlock',
-		'fontSize',
-		'fontColor',
-		'fontFamily',
-		'underline',
-		'alignment'
 	],
 	// image: {
 	// 	upload: {
