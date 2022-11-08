@@ -14,7 +14,7 @@ export function Header() {
 	
 	return (
 		<header className="relative px-4 py-2 w-full bg-gray-800 text-white">
-			<nav className="max-w-7xl md:mx-auto">
+			<nav className="max-w-7xl sm:px-8 md:mx-auto">
 				<div className="md:hidden flex items-center justify-between">
 					<button className="align-middle" onClick={ handleMenu }>
 						{
