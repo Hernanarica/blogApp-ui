@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authInstance = axios.create({
-	baseURL: 'http://127.0.0.1:8000/api'
+	baseURL: import.meta.env.VITE_BASE_URL_API
 });
 
 authInstance.interceptors.response.use(function (response) {

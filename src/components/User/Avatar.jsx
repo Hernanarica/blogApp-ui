@@ -14,7 +14,7 @@ export function Avatar() {
 	return (
 		<>
 			<button className="w-10 h-10 align-middle rounded-full overflow-hidden" onClick={ handleShowMenu }>
-				<img src={ `http://127.0.0.1:8000/uploads/profile/${ image }` } alt="Image profile" />
+				<img src={ `${ import.meta.env.VITE_BASE_URL_UPLOADS }/profile/${ image }` } alt="Image profile" />
 			</button>
 			
 			{

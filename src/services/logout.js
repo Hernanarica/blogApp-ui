@@ -3,7 +3,7 @@ import { getCookie } from "../helpers/index.js";
 
 export async function logoutService() {
 	try {
-		const url = 'http://127.0.0.1:8000/api/logout'
+		const url = `${ import.meta.env.VITE_BASE_URL_API }/logout`
 		const config = {
 			headers: {
 				Authorization: `Bearer ${ getCookie('token') }`
