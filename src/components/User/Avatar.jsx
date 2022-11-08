@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { LogoutBtn } from '../Buttons/index.js';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export function Avatar() {
-	const [showMenu, setShowMenu ] = useState(false)
+	const { image } = useSelector(state => state.auth.credentials)
+	const [showMenu, setShowMenu ] = useState(false);
 	
 	const handleShowMenu = () => {
 		setShowMenu(!showMenu);
@@ -11,7 +13,9 @@ export function Avatar() {
 	
 	return (
 		<>
-			<button className="w-10 h-10 bg-avatar-image align-middle rounded-full" onClick={ handleShowMenu }></button>
+			<button className="w-10 h-10 align-middle rounded-full overflow-hidden" onClick={ handleShowMenu }>
+				<img src={ `http://127.0.0.1:8000/uploads/profile/${ image }` } alt="Image profile" />
+			</button>
 			
 			{
 				showMenu && (
