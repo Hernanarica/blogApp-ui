@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Wrapper } from '../components/Utils/Wrapper';
 import myRoute from '../types/routes.js';
+import { useSelector } from 'react-redux';
 
 export function Home() {
+	const { isAuthenticated } = useSelector(state => state.auth);
+	
 	return (
 		<>
 			<Wrapper>
@@ -36,10 +39,14 @@ export function Home() {
 								El lugar perfecto para compartir ideas, pensamientos y sobre todo
 								poder ayudar a otros miembros de la comunidad con tu conocimiento.
 							</p>
-							<div className="flex items-center gap-3">
-								<Link to={ myRoute.public.register } className="px-4 py-3 bg-indigo-100 text-indigo-600 font-medium rounded">Registrate</Link>
-								<Link to={ myRoute.public.login } className="text-indigo-600 font-medium">Inicia sesión</Link>
-							</div>
+							{
+								!isAuthenticated && (
+									<div className="flex items-center gap-3">
+										<Link to={ myRoute.public.register } className="px-4 py-3 bg-indigo-100 text-indigo-600 font-medium rounded">Registrate</Link>
+										<Link to={ myRoute.public.login } className="text-indigo-600 font-medium">Inicia sesión</Link>
+									</div>
+								)
+							}
 						</div>
 					</div>
 				</div>
