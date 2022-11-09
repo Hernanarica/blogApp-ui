@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { axiosUserRegisterInstance } from '../config/axiosConfig.js';
 
 export function Register() {
 	const { handleSubmit, register, formState: { errors }, getValues } = useForm();
@@ -7,10 +7,9 @@ export function Register() {
 	const onSubmit = data => {
 		const formData = new FormData(document.getElementById('form'));
 		
-		axios.post('http://127.0.0.1:8000/api/users', formData)
-			.then(r => {
+		axiosUserRegisterInstance.post('/users', formData).then(r => {
 			console.log(r);
-		});
+		})
 	};
 	
 	return (

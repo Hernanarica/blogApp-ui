@@ -1,24 +1,24 @@
-import axios from "axios";
 import { createCredentialsAdapter } from '../adapters/createCredentialsAdapter.js';
+import { axiosUserAuthInstance } from '../config/axiosConfig.js';
 
-const authInstance = axios.create({
-	baseURL: import.meta.env.VITE_BASE_URL_API
-});
-
-authInstance.interceptors.response.use(function (response) {
+axiosUserAuthInstance.interceptors.response.use(function (response) {
+	if (response.data.status === 'error') {
+		return response.data;
+	}
+	
 	return {
 		data: createCredentialsAdapter(response.data.data),
 		status: response.data.status,
 		token: response.data.token
 	};
 }, function (error) {
-	throw new Error(error);
+	console.error(error);
 });
 
 export async function loginService(userData) {
 	try {
-		return await authInstance.post('/login', { ...userData }, { method: 'POST' });
+		return await axiosUserAuthInstance.post('/login', { ...userData });
 	} catch (err) {
-		throw new Error(err);
+		console.error(err);
 	}
 }

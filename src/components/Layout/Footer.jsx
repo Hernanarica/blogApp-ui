@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export function Footer() {
 	return (
 		<footer className="bg-white">
@@ -111,7 +113,7 @@ export function Footer() {
 					</a>
 				</div>
 				<p className="mt-8 text-center text-base text-gray-400">
-					© 2020 Your Company, Inc. All rights reserved.
+					© { moment().format('Y') } Your Company, Inc. All rights reserved.
 				</p>
 			</div>
 		</footer>
