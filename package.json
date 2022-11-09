@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^5.0.2",
-    "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^1.0.0",
