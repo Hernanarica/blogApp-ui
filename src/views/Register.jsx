@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { axiosUserRegisterInstance } from '../config/axiosConfig.js';
+import { FormNotificationInputError } from '../components/Form/FormNotificationInputError';
 
 export function Register() {
 	const { handleSubmit, register, formState: { errors }, getValues } = useForm();
@@ -24,7 +25,7 @@ export function Register() {
 						id="form"
 						encType="multipart/form-data"
 					>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="name"
 								className="block text-sm font-medium text-gray-700"
@@ -41,8 +42,11 @@ export function Register() {
 									}
 								}) }
 							/>
+							{
+								errors.name && <FormNotificationInputError error={ errors.name.message } />
+							}
 						</div>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="email"
 								className="block text-sm font-medium text-gray-700"
@@ -63,8 +67,11 @@ export function Register() {
 									}
 								}) }
 							/>
+							{
+								errors.email && <FormNotificationInputError error={ errors.email.message } />
+							}
 						</div>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="password"
 								className="block text-sm font-medium text-gray-700"
@@ -85,8 +92,11 @@ export function Register() {
 									}
 								}) }
 							/>
+							{
+								errors.password && <FormNotificationInputError error={ errors.password.message } />
+							}
 						</div>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="password_confirmation"
 								className="block text-sm font-medium text-gray-700"
@@ -108,6 +118,9 @@ export function Register() {
 									validate: value => value === getValues('password') || 'Deben ser iguales'
 								}) }
 							/>
+							{
+								errors.password_confirmation && <FormNotificationInputError error={ errors.password_confirmation.message } />
+							}
 						</div>
 						
 						<div>
@@ -121,23 +134,6 @@ export function Register() {
 								/>
 							</label>
 						</div>
-						
-						{
-							errors.name && <p>{ errors.name.message }</p>
-						}
-						
-						{
-							errors.email && <p>{ errors.email.message }</p>
-						}
-						
-						{
-							errors.password && <p>{ errors.password.message }</p>
-						}
-						
-						{
-							errors.password_confirmation && <p>{ errors.password_confirmation.message }</p>
-						}
-						
 						<button className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Registrar</button>
 					</form>
 				</div>
