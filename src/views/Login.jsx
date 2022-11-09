@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { loginThunk }  from "../state/thunks/index.js";
+import { FormNotificationInputError } from '../components/Form/FormNotificationInputError';
 
 export function Login() {
 	const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export function Login() {
 						onSubmit={ handleSubmit(onSubmit) }
 						className="space-y-6"
 					>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="email"
 								className="block text-sm font-medium text-gray-700"
@@ -40,8 +41,11 @@ export function Login() {
 									}
 								})}
 							/>
+							{
+								errors.email && <FormNotificationInputError error={ errors.email.message }/>
+							}
 						</div>
-						<div>
+						<div className="space-y-2">
 							<label
 								htmlFor="password"
 								className="block text-sm font-medium text-gray-700"
@@ -59,20 +63,15 @@ export function Login() {
 									}
 								})}
 							/>
+							{
+								errors.password && <FormNotificationInputError error={ errors.password.message }/>
+							}
 						</div>
-						
 						{
-							errors.email && <p>{ errors.email.message }</p>
+							errors.credentialsError && <div {...register('credentialsError', { required: false })}>
+								<FormNotificationInputError error={ errors.credentialsError.message } />
+							</div>
 						}
-						
-						{
-							errors.password && <p>{ errors.password.message }</p>
-						}
-						
-						{
-							errors.credentialsError && <p {...register('credentialsError', { required: false })}>{ errors.credentialsError.message }</p>
-						}
-						
 						<button className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Iniciar sesion</button>
 					</form>
 				</div>
