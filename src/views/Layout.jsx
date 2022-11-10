@@ -5,9 +5,9 @@ import { Toaster } from 'react-hot-toast';
 export function Layout() {
 	return (
 		<>
-			<Toaster />
 			<Header />
 			<main>
+				<Toaster />
 				<Outlet />
 			</main>
 			<Footer />
