@@ -1,15 +1,30 @@
 import { useForm } from "react-hook-form";
 import { axiosUserRegisterInstance } from '../config/axiosConfig.js';
 import { FormNotificationInputError } from '../components/Form/FormNotificationInputError';
+import toast from 'react-hot-toast';
 
 export function Register() {
-	const { handleSubmit, register, formState: { errors }, getValues } = useForm();
+	const { handleSubmit, register, formState: { errors }, getValues, reset } = useForm();
 	
 	const onSubmit = data => {
 		const formData = new FormData(document.getElementById('form'));
 		
-		axiosUserRegisterInstance.post('/users', formData).then(r => {
-			console.log(r);
+		const notifyLoading = toast.loading('Registrando...');
+		
+		axiosUserRegisterInstance.post('/users', formData).then(res => {
+			if (res.status === 'error') {
+				toast.error(res.message, {
+					id: notifyLoading
+				});
+			} else {
+				toast.success('Registrado con éxito', {
+					id: notifyLoading
+				});
+				
+				reset();
+			}
+		}).catch(err => {
+			console.log(err);
 		})
 	};
 	

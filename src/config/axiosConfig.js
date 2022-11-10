@@ -14,6 +14,12 @@ export const axiosUserRegisterInstance = axios.create({
 	}
 });
 
+axiosUserRegisterInstance.interceptors.response.use(function (response) {
+	return response.data;
+}, function (err) {
+	return err.response.data;
+});
+
 export const axiosUserLogoutInstance = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL_API,
 });
