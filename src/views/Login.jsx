@@ -5,12 +5,12 @@ import { FormNotificationInputError } from '../components/Form/FormNotificationI
 
 export function Login() {
 	const dispatch = useDispatch();
-	const { handleSubmit, register, formState: { errors }, setError } = useForm();
-	
+	const { handleSubmit, register, formState: { errors } } = useForm();
+
 	const onSubmit = (userData) => {
-		dispatch(loginThunk(userData, setError));
+		dispatch(loginThunk(userData));
 	}
-	
+
 	return (
 		<div className="min-h-[calc(100vh-58px)] flex items-center justify-center">
 			<div className="sm:w-full sm:max-w-md">

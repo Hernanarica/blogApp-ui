@@ -5,25 +5,25 @@ import { notifyError, notifyLoading, notifySuccess } from '../helpers';
 
 export function Register() {
 	const { handleSubmit, register, formState: { errors }, getValues, reset } = useForm();
-	
+
 	const onSubmit = data => {
 		const formData = new FormData(document.getElementById('form'));
-		
+
 		notifyLoading('Registrando...');
-		
+
 		axiosUserRegisterInstance.post('/users', formData).then(res => {
 			if (res.status === 'error') {
 				notifyError(res.message);
 			} else {
 				notifySuccess('Registrado con éxito');
-				
+
 				reset();
 			}
 		}).catch(err => {
 			console.log(err);
 		})
 	};
-	
+
 	return (
 		<div className="min-h-[calc(100vh-58px)] flex items-center justify-center">
 			<div className="sm:w-full sm:max-w-md">

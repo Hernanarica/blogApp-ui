@@ -1,20 +1,22 @@
 import { loginService } from "../../services/index.js";
 import { login } from "../slices/index.js";
-import { setCookie } from "../../helpers/index.js";
+import { notifyError, notifyLoading, notifySuccess, setCookie } from "../../helpers";
 
-export function loginThunk(userData, setError) {
+export function loginThunk(userData) {
 	return async (dispatch) => {
 		const data = await loginService(userData);
-		
-		if (data.status === 'error') {
-			return setError('credentialsError', { message: data.message });
-		}
-		
+
+		notifyLoading('Compobando credenciales...');
+
+		if (data.status === 'error') return notifyError(data.message);
+
 		const { data: credentials, token } = data;
-		
+
 		setCookie('token', token);
 		setCookie('credentials', JSON.stringify(credentials));
-		
+
 		dispatch(login(credentials));
+
+		notifySuccess('Bienvenido!');
 	};
 }
