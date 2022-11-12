@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { Footer, Header } from '../components';
 import { Toaster } from 'react-hot-toast';
+import { Footer, Header } from '../components';
 
 export function Layout() {
 	const { pathname } = useLocation();
@@ -12,7 +12,7 @@ export function Layout() {
 				<Toaster />
 				<Outlet />
 			</main>
-			{ pathname !== '/dashboard' && <Footer /> }
+			{ !pathname.includes('/dashboard') && <Footer /> }
 		</>
 	);
 }

@@ -1,7 +1,9 @@
 export default {
 	private: {
 		dashboard: '/dashboard',
-		profile: '/dashboard/profile'
+		profile: '/profile',
+		posts: '/posts',
+		users: '/usuarios',
 	},
 	public: {
 		home: '/',

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { PublicRoutes } from "./PublicRoutes";
-import { Home, Login, Register, Dashboard, Profile, Layout } from "../views/index.js";
+import { Home, Login, Register, Dashboard, Layout } from "../views/index.js";
 import myRoute from '../types/routes.js';
 
 export function AppRouter() {
@@ -19,8 +19,10 @@ export function AppRouter() {
 					
 					{/* Private myRoute */}
 					<Route path={ myRoute.private.dashboard } element={ <ProtectedRoutes/> }>
-						<Route index element={ <Dashboard /> } />
-						<Route path={ myRoute.private.profile } element={ <Profile /> } />
+						<Route path="/dashboard" element={ <Dashboard /> }>
+							<Route path="posts" element={ <h1>Mis Posts</h1> } />
+							<Route path="users" element={ <h1>Mis Usuarios</h1> } />
+						</Route>
 					</Route>
 					
 				</Route>

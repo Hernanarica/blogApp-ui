@@ -35,11 +35,5 @@ export const routes = {
 			end: '/dashboard',
 			component: Dashboard
 		},
-		{
-			name: 'Profile',
-			path: myRoute.private.profile,
-			end: '/dashboard',
-			component: Profile
-		}
 	]
 };
