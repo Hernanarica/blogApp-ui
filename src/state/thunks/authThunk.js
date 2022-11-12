@@ -4,9 +4,9 @@ import { notifyError, notifyLoading, notifySuccess, setCookie } from "../../help
 
 export function loginThunk(userData) {
 	return async (dispatch) => {
+		notifyLoading('Comprobando credenciales...');
+		
 		const data = await loginService(userData);
-
-		notifyLoading('Compobando credenciales...');
 
 		if (data.status === 'error') return notifyError(data.message);
 
