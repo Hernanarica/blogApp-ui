@@ -1,4 +1,4 @@
-import { Home, Login, Register, Dashboard, Profile } from "../views";
+import { Home, Login, Register, Dashboard, Profile, Posts, Users } from "../views";
 import myRoute from '../types/routes.js';
 
 export const routes = {
@@ -34,6 +34,20 @@ export const routes = {
 			path: myRoute.private.dashboard,
 			end: '/dashboard',
 			component: Dashboard
+		},
+	],
+	dashboardRoutes: [
+		{
+			name: 'posts',
+			path: myRoute.private.posts,
+			end: '/dashboard',
+			component: Posts
+		},
+		{
+			name: 'users',
+			path: myRoute.private.users,
+			end: '/dashboard',
+			component: Users
 		},
 	]
 };
