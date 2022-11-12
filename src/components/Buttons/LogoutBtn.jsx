@@ -18,10 +18,10 @@ export function LogoutBtn() {
 	
 	return (
 		<button className="flex items-center gap-1 w-full px-2 py-2" onClick={ handleLogout }>
-			Logout
 			<span>
 				<ArrowLeftOnRectangleIcon className="w-5 h-5" />
 			</span>
+			Logout
 		</button>
 	);
 }
