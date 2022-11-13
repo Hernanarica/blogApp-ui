@@ -20,6 +20,7 @@ export function AppRouter() {
 					{/* Private myRoute */}
 					<Route path={ myRoute.private.dashboard } element={ <ProtectedRoutes/> }>
 						<Route path="/dashboard" element={ <Dashboard /> }>
+							<Route index element={ <h1>Dashboard inicial</h1> } />
 							<Route path="posts" element={ <h1>Mis Posts</h1> } />
 							<Route path="usuarios" element={ <h1>Mis Usuarios</h1> } />
 						</Route>
