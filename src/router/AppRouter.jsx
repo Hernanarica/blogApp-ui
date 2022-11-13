@@ -1,10 +1,17 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 import { Home, Login, Register, Dashboard, Layout } from "../views";
 import myRoute from '../types/routes.js';
+import { useEffect } from 'react';
 
 export function AppRouter() {
+	const { pathname } = useLocation();
+	
+	useEffect(() => {
+		window.localStorage.setItem('pathname', pathname);
+	}, [ pathname ]);
+	
 	return (
 		<>
 			<Routes>
