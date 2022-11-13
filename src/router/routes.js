@@ -1,6 +1,5 @@
-import { Home, Login, Register, Dashboard, Profile, Posts, Users } from "../views";
+import { Home, Login, Register, Dashboard } from "../views";
 import myRoute from '../types/routes.js';
-import { NewspaperIcon, UsersIcon } from '@heroicons/react/24/outline/index.js';
 
 export const routes = {
 	publicRoutes: [
