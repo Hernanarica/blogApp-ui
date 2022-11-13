@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { PublicRoutes } from "./PublicRoutes";
-import { Home, Login, Register, Dashboard, Layout } from "../views/index.js";
+import { Home, Login, Register, Dashboard, Layout } from "../views";
 import myRoute from '../types/routes.js';
 
 export function AppRouter() {

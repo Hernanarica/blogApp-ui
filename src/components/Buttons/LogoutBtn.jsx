@@ -1,14 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline/index.js';
-import { logout } from '../../state/slices/index.js';
-import { logoutService } from '../../services/index.js';
-import { deleteCookie } from '../../helpers/index.js';
+import { deleteCredentials, logout } from '../../state/slices';
+import { logoutService } from '../../services';
+import { deleteCookie } from '../../helpers';
 
 export function LogoutBtn() {
 	const dispatch = useDispatch();
 	
 	const handleLogout = async () => {
 		dispatch(logout());
+		dispatch(deleteCredentials());
 		
 		await logoutService();
 		

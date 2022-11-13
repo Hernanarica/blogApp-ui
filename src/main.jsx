@@ -11,13 +11,13 @@ import './css/index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StoreProvider>
-      <AuthProvider>
+      {/*<AuthProvider>*/}
         <RouterProvider>
           <AppRouter>
             <App />
           </AppRouter>
         </RouterProvider>
-      </AuthProvider>
+      {/*</AuthProvider>*/}
     </StoreProvider>
   </React.StrictMode>
 )

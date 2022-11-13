@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCookie } from "../helpers";
-import { login } from "../state/slices/index.js";
+import { login, setCredentials } from "../state/slices";
 
 export function AuthProvider({ children }) {
 	const dispatch  = useDispatch();
@@ -10,9 +10,11 @@ export function AuthProvider({ children }) {
 		
 		if (!getCookie('token')) return;
 		
+		// dispatch(login()); Medio al pedo esto ya que en el estado inicial el AuthSlice chequea si es true o false
+		dispatch(login());
 		const userCredentials = JSON.parse(getCookie('credentials'));
 		
-		dispatch(login(userCredentials));
+		dispatch(setCredentials(userCredentials));
 		
 	}, []);
 	

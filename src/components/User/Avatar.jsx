@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export function Avatar() {
-	const { image } = useSelector(state => state.auth.credentials)
+	const { image } = useSelector(state => state.user.credentials)
 	const [showMenu, setShowMenu ] = useState(false);
 	
 	const handleShowMenu = () => {
