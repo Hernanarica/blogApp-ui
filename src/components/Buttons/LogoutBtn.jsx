@@ -15,6 +15,8 @@ export function LogoutBtn() {
 		
 		deleteCookie('token');
 		deleteCookie('credentials');
+		
+		window.localStorage.removeItem('pathname');
 	};
 	
 	return (

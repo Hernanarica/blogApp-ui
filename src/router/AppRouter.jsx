@@ -4,12 +4,14 @@ import { PublicRoutes } from "./PublicRoutes";
 import { Home, Login, Register, Dashboard, Layout } from "../views";
 import myRoute from '../types/routes.js';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export function AppRouter() {
+	const { isAuthenticated } = useSelector(state => state.auth);
 	const { pathname } = useLocation();
 	
 	useEffect(() => {
-		window.localStorage.setItem('pathname', pathname);
+		isAuthenticated && window.localStorage.setItem('pathname', pathname);
 	}, [ pathname ]);
 	
 	return (
