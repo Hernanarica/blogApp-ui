@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { PublicRoutes } from "./PublicRoutes";
-import { Home, Login, Register, Dashboard, Layout } from "../views";
+import { Home, Login, Register, Dashboard, Layout, Posts } from "../views";
 import myRoute from '../types/routes.js';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -31,7 +31,7 @@ export function AppRouter() {
 					<Route path={ myRoute.private.dashboard } element={ <ProtectedRoutes/> }>
 						<Route path={ myRoute.private.dashboard } element={ <Dashboard /> }>
 							<Route index element={ <Main /> } />
-							<Route path={ myRoute.private.posts } element={ <h1>Mis Posts</h1> } />
+							<Route path={ myRoute.private.posts } element={ <Posts /> } />
 							<Route path={ myRoute.private.users } element={ <h1>Mis Usuarios</h1> } />
 						</Route>
 					</Route>
