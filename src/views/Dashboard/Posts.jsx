@@ -1,7 +1,7 @@
 export function Posts() {
 	return (
 		<div className="flex flex-col gap-14">
-			<div className="border flex justify-between">
+			<div className="flex justify-between">
 				<h1 className="relative text-2xl font-medium">
 					Todos Los Posts
 					<span className="absolute bottom-0 -right-9 text-sm text-stone-400">1987</span>

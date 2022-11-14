@@ -2,7 +2,7 @@ import { NewspaperIcon, StarIcon, UsersIcon } from '@heroicons/react/24/outline/
 
 export function Main() {
 	return (
-		<div className="p-2">
+		<section>
 			<dl className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 				<div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
 					<dt>
@@ -74,6 +74,6 @@ export function Main() {
 					</dd>
 				</div>
 			</dl>
-		</div>
+		</section>
 	);
 }
