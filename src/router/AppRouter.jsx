@@ -5,6 +5,7 @@ import { Home, Login, Register, Dashboard, Layout } from "../views";
 import myRoute from '../types/routes.js';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { Main } from '../views/Dashboard/Main';
 
 export function AppRouter() {
 	const { isAuthenticated } = useSelector(state => state.auth);
@@ -29,7 +30,7 @@ export function AppRouter() {
 					{/* Private myRoute */}
 					<Route path={ myRoute.private.dashboard } element={ <ProtectedRoutes/> }>
 						<Route path={ myRoute.private.dashboard } element={ <Dashboard /> }>
-							<Route index element={ <h1>Dashboard inicial</h1> } />
+							<Route index element={ <Main /> } />
 							<Route path={ myRoute.private.posts } element={ <h1>Mis Posts</h1> } />
 							<Route path={ myRoute.private.users } element={ <h1>Mis Usuarios</h1> } />
 						</Route>
