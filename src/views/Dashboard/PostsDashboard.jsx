@@ -10,7 +10,7 @@ export function PostsDashboard() {
 				</h1>
 				<div>
 					<Link
-						to="/dashboard/create"
+						to="crear"
 						className="inline-flex items-center rounded-md border border-transparent bg-stone-900 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2"
 					>
 						Crear

@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
-import { Footer, Header } from '../components';
+import { Footer, Header } from '../../components';
 
 export function Layout() {
 	const { pathname } = useLocation();
