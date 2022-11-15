@@ -1,4 +1,6 @@
-export function Posts() {
+import { Link } from 'react-router-dom';
+
+export function PostsDashboard() {
 	return (
 		<div className="flex flex-col gap-14">
 			<div className="flex justify-between">
@@ -7,11 +9,12 @@ export function Posts() {
 					<span className="absolute bottom-0 -right-9 text-sm text-stone-400">1987</span>
 				</h1>
 				<div>
-					<button
+					<Link
+						to="/dashboard/create"
 						className="inline-flex items-center rounded-md border border-transparent bg-stone-900 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2"
 					>
 						Crear
-					</button>
+					</Link>
 				</div>
 			</div>
 			

@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import Editor from 'ckeditor5-custom-build';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { useEffect, useState } from 'react';
 import useTextEditor from '../../hooks/useTextEditor.js';
+import { PlusIcon } from '@heroicons/react/24/outline/index.js';
 
 import '../../css/textEditor.css';
 
@@ -55,27 +56,35 @@ const config = {
 
 export function Post() {
 	const { body, handleTextEditorSave, handleTextEditorChange } = useTextEditor();
-	const [ btnActive, setBtnActive ] = useState(false);
+	const [ btnActive, setBtnActive ] = useState(true);
 	
 	useEffect(() => {
 		(body.length > 0)
-			? setBtnActive(true)
-			: setBtnActive(false)
+			? setBtnActive(false)
+			: setBtnActive(true)
 	}, [ body ]);
 	
 	return (
-		<div className="w-full flex flex-col">
+		<div className="relative w-full flex flex-col">
 			<CKEditor
 				editor={ Editor }
 				config={ editorConfiguration }
 				data={ body }
 				onChange={ handleTextEditorChange }
 			/>
+			
 			<button
+				type="button"
 				disabled={ btnActive }
-				className={ `self-end px-3 py-2 w-fit bg-gray-800 text-white rounded mt-2 duration-300 ${ !btnActive ? 'cursor-not-allowed opacity-90' : 'cursor-pointer' }` }
+				className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
+					${ btnActive
+						? 'cursor-not-allowed opacity-90'
+						: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+				}` }
 				onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
-			>Postear</button>
+			>
+				<PlusIcon className="h-6 w-6" />
+			</button>
 		</div>
 	);
 }

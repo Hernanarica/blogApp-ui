@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { getCookie } from '../helpers/index.js';
+import { getCookie } from '../helpers';
 
 const initialState = '';
 
 function useTextEditor() {
 	const [ body, setBody ] = useState(initialState);
-	const { id: userId } = useSelector(state => state.auth.credentials)
+	const { id: userId } = useSelector(state => state.user.credentials)
 	
 	const handleTextEditorChange = (e, editor) => {
 		setBody(editor.getData());

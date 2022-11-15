@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { NewspaperIcon, UsersIcon } from '@heroicons/react/24/outline/index.js';
-import { Posts, Users } from '../../views';
+import { PostsDashboard, Users } from '../../views';
 
 const dashboardRoutes = [
 	{
 		name: 'Posts',
 		path: 'posts',
 		end: '/dashboard',
-		component: <Posts />,
+		component: <PostsDashboard />,
 		icon: <NewspaperIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
 	},
 	{
