@@ -70,11 +70,11 @@
 	/*border-bottom-left-radius: 0.75rem;*/
 	/*border-bottom-right-radius: 0.75rem;*/
 	/*border-top: none;*/
-	height: calc(100vh - 113px);
+	height: calc(100vh - 55px);
 }
 
 .ck.ck-editor__main > .ck-editor__editable.ck-focused {
-	height: calc(100vh - 113px);
+	height: calc(100vh - 55px);
 	/*height: 120px;*/
 	/*border-width: 2px;*/
 	/*border-top-width: 0;*/
