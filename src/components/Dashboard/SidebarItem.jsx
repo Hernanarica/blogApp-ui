@@ -24,16 +24,18 @@ export function SidebarItem() {
 		<>
 			{
 				dashboardRoutes.map(routeItem => (
-					<NavLink
-						key={ routeItem.name }
-						to={ routeItem.path }
-						className={ ({ isActive }) => `group border-l-4 py-2 px-3 flex items-center text-sm
-										${isActive ? 'border-purple-600' : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50'}
-									`}
-					>
-						{ routeItem.icon }
-						{ routeItem.name }
-					</NavLink>
+					<li>
+						<NavLink
+							key={ routeItem.name }
+							to={ routeItem.path }
+							className={ ({ isActive }) => `group border-l-4 py-2 px-3 flex items-center text-sm
+											${isActive ? 'border-purple-600' : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50'}
+										`}
+						>
+							{ routeItem.icon }
+							{ routeItem.name }
+						</NavLink>
+					</li>
 				))
 			}
 		</>
