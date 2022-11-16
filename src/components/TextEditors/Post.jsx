@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getCookie } from '../../helpers';
+import axios from 'axios';
 import Editor from 'ckeditor5-custom-build';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { PlusIcon } from '@heroicons/react/24/outline/index.js';
-import useTextEditor from '../../hooks/useTextEditor.js';
 
 import '../../css/textEditor.css';
+import { useForm } from 'react-hook-form';
 
 const editorConfiguration = {
 	toolbar: [
@@ -54,9 +57,13 @@ const config = {
 	published: '2022-10-31'
 }
 
+const initialState = '';
+
 export function Post() {
-	const { body, handleTextEditorSave, handleTextEditorChange } = useTextEditor();
 	const [ btnActive, setBtnActive ] = useState(true);
+	const [ body, setBody ] = useState(initialState);
+	const { formState, register, handleSubmit } = useForm();
+	const { id: userId } = useSelector(state => state.user.credentials)
 	
 	useEffect(() => {
 		(body.length > 0)
@@ -64,10 +71,38 @@ export function Post() {
 			: setBtnActive(true)
 	}, [ body ]);
 	
+	const onSubmit = (data) => {
+		if (body.length === 0) return;
+		
+		axios.post(  'http://127.0.0.1:8000/api/posts',{
+			...config,
+			...data,
+			body,
+			'user_id': userId
+		},{
+			'headers': {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${ getCookie('token') }`
+			}
+		}).then(r => {
+			console.log(r);
+			
+			handleTextEditorReset();
+		});
+	}
+	
+	const handleTextEditorChange = (e, editor) => {
+		setBody(editor.getData());
+	};
+	
+	
+	const handleTextEditorReset = () => {
+		setBody(initialState);
+	};
+	
 	return (
-		<div className="flex flex-col gap-7">
+		<form className="flex flex-col gap-7" onSubmit={ handleSubmit(onSubmit) }>
 			<div className="space-y-5">
-				
 				<div>
 					<label
 						htmlFor="title"
@@ -81,11 +116,13 @@ export function Post() {
 							name="title"
 							id="title"
 							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+							{ ...register('title', {
+								required: true,
+								maxLength: 30
+							})}
 						/>
 					</div>
 				</div>
-				
-				
 				<div>
 					<label
 						htmlFor="comment"
@@ -99,10 +136,13 @@ export function Post() {
 					    name="description"
 					    id="description"
 					    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm resize-none"
+					    { ...register('description', {
+						    required: true,
+						    maxLength: 150
+					    })}
 				    />
 					</div>
 				</div>
-			
 			</div>
 				
 			<div className="relative">
@@ -113,18 +153,18 @@ export function Post() {
 					onChange={ handleTextEditorChange }
 				/>
 				<button
-					type="button"
-					disabled={ btnActive }
+					type="submit"
+					// disabled={ btnActive }
 					className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
 						${ btnActive
-							? 'cursor-not-allowed opacity-90'
+							? ''
 							: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
 					}` }
-					onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
+					// onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
 				>
 					<PlusIcon className="h-6 w-6" />
 				</button>
 			</div>
-		</div>
+		</form>
 	);
 }
