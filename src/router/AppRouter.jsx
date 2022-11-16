@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { Main } from '../views/Dashboard/Main';
 import { CreatePost } from '../views/Posts/CreatePost';
 import { Layout, LayoutDashboard } from '../views/Layouts';
+import { Posts } from '../views/Posts';
 
 export function AppRouter() {
 	const { isAuthenticated } = useSelector(state => state.auth);
@@ -24,6 +25,8 @@ export function AppRouter() {
 				<Route path="/" element={ <Layout /> }>
 					{/* Public myRoute */}
 					<Route index element={ <Home /> } />
+					<Route path="posts" element={ <Posts /> } />
+					
 					<Route element={ <PublicRoutes /> }>
 						<Route path={ myRoute.public.login } element={ <Login /> } />
 						<Route path={ myRoute.public.register } element={ <Register /> } />

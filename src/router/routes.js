@@ -1,4 +1,4 @@
-import { Home, Login, Register, Dashboard } from "../views";
+import { Home, Login, Register, Dashboard, Posts } from "../views";
 import myRoute from '../types/routes.js';
 
 export const routes = {
@@ -8,6 +8,12 @@ export const routes = {
 			path: myRoute.public.home,
 			end: '/',
 			component: Home
+		},
+		{
+			name: 'Posts',
+			path: "posts",
+			end: '/',
+			component: Posts
 		},
 		{
 			name: 'Login',
@@ -28,6 +34,12 @@ export const routes = {
 			path: myRoute.public.home,
 			end: '/dashboard',
 			component: Home
+		},
+		{
+			name: 'Posts',
+			path: "posts",
+			end: '/',
+			component: Posts
 		},
 		{
 			name: 'Dashboard',
