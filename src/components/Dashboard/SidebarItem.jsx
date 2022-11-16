@@ -1,8 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { NewspaperIcon, UsersIcon } from '@heroicons/react/24/outline/index.js';
-import { PostsDashboard, Users } from '../../views';
+import { HomeIcon, NewspaperIcon, UsersIcon } from '@heroicons/react/24/outline/index.js';
+import { Dashboard, Home, PostsDashboard, Users } from '../../views';
 
 const dashboardRoutes = [
+	{
+		name: 'Dashboard',
+		path: '/dashboard',
+		end: '/dashboard',
+		component: <Dashboard />,
+		icon: <HomeIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
+	},
 	{
 		name: 'Posts',
 		path: 'posts',
@@ -24,10 +31,10 @@ export function SidebarItem() {
 		<>
 			{
 				dashboardRoutes.map(routeItem => (
-					<li>
+					<li key={ routeItem.name }>
 						<NavLink
-							key={ routeItem.name }
 							to={ routeItem.path }
+							end={ routeItem.end }
 							className={ ({ isActive }) => `group border-l-4 py-2 px-3 flex items-center text-sm
 											${isActive ? 'border-purple-600' : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50'}
 										`}
