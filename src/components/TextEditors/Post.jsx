@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Editor from 'ckeditor5-custom-build';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import useTextEditor from '../../hooks/useTextEditor.js';
 import { PlusIcon } from '@heroicons/react/24/outline/index.js';
+import useTextEditor from '../../hooks/useTextEditor.js';
 
 import '../../css/textEditor.css';
 
@@ -65,26 +65,66 @@ export function Post() {
 	}, [ body ]);
 	
 	return (
-		<div className="relative w-full flex flex-col">
-			<CKEditor
-				editor={ Editor }
-				config={ editorConfiguration }
-				data={ body }
-				onChange={ handleTextEditorChange }
-			/>
+		<div className="flex flex-col gap-7">
+			<div className="space-y-5">
+				
+				<div>
+					<label
+						htmlFor="title"
+						className="block text-sm font-medium text-gray-700"
+					>
+						Título
+					</label>
+					<div className="mt-1">
+						<input
+							type="text"
+							name="title"
+							id="title"
+							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+						/>
+					</div>
+				</div>
+				
+				
+				<div>
+					<label
+						htmlFor="comment"
+						className="block text-sm font-medium text-gray-700"
+					>
+						Descripcion
+					</label>
+					<div className="mt-1">
+				    <textarea
+					    rows="3"
+					    name="description"
+					    id="description"
+					    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm resize-none"
+				    />
+					</div>
+				</div>
 			
-			<button
-				type="button"
-				disabled={ btnActive }
-				className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
-					${ btnActive
-						? 'cursor-not-allowed opacity-90'
-						: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-				}` }
-				onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
-			>
-				<PlusIcon className="h-6 w-6" />
-			</button>
+			</div>
+				
+			<div className="relative">
+				<CKEditor
+					editor={ Editor }
+					config={ editorConfiguration }
+					data={ body }
+					onChange={ handleTextEditorChange }
+				/>
+				<button
+					type="button"
+					disabled={ btnActive }
+					className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
+						${ btnActive
+							? 'cursor-not-allowed opacity-90'
+							: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+					}` }
+					onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
+				>
+					<PlusIcon className="h-6 w-6" />
+				</button>
+			</div>
 		</div>
 	);
 }
