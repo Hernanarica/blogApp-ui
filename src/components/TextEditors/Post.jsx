@@ -112,11 +112,12 @@ export function Post() {
 					>
 						Título
 					</label>
-					<div className="mt-1">
+					<div className="relative mt-1">
 						<input
 							type="text"
 							name="title"
 							id="title"
+							maxLength="30"
 							placeholder="Obligatorio"
 							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 							{ ...register('title', {
@@ -124,6 +125,7 @@ export function Post() {
 								maxLength: 30
 							})}
 						/>
+						<span className="absolute -bottom-6 right-0 text-xs text-gray-400">{ title.length }/30</span>
 					</div>
 				</div>
 				<div>
@@ -133,11 +135,12 @@ export function Post() {
 					>
 						Descripcion
 					</label>
-					<div className="mt-1">
+					<div className="relative mt-1">
 				    <textarea
 					    rows="3"
 					    name="description"
 					    id="description"
+					    maxLength="150"
 					    placeholder="Obligatorio"
 					    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm resize-none"
 					    { ...register('description', {
@@ -145,6 +148,7 @@ export function Post() {
 						    maxLength: 150
 					    })}
 				    />
+						<span className="absolute -bottom-6 right-0 text-xs text-gray-400">{ description.length }/150</span>
 					</div>
 				</div>
 			</div>
