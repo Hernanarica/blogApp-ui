@@ -62,14 +62,16 @@ const initialState = '';
 export function Post() {
 	const [ btnActive, setBtnActive ] = useState(true);
 	const [ body, setBody ] = useState(initialState);
-	const { formState, register, handleSubmit } = useForm();
-	const { id: userId } = useSelector(state => state.user.credentials)
+	const { register, handleSubmit, watch } = useForm();
+	const { id: userId } = useSelector(state => state.user.credentials);
+	const title = watch('title', '');
+	const description = watch('description', '');
 	
 	useEffect(() => {
-		(body.length > 0)
+		(body.length > 0 && title.length > 0 && description.length > 0)
 			? setBtnActive(false)
 			: setBtnActive(true)
-	}, [ body ]);
+	}, [ body, title, description ]);
 	
 	const onSubmit = (data) => {
 		if (body.length === 0) return;
@@ -115,6 +117,7 @@ export function Post() {
 							type="text"
 							name="title"
 							id="title"
+							placeholder="Obligatorio"
 							className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 							{ ...register('title', {
 								required: true,
@@ -135,6 +138,7 @@ export function Post() {
 					    rows="3"
 					    name="description"
 					    id="description"
+					    placeholder="Obligatorio"
 					    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm resize-none"
 					    { ...register('description', {
 						    required: true,
@@ -154,13 +158,12 @@ export function Post() {
 				/>
 				<button
 					type="submit"
-					// disabled={ btnActive }
+					disabled={ btnActive }
 					className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
 						${ btnActive
-							? ''
+							? 'cursor-not-allowed opacity-90'
 							: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
 					}` }
-					// onClick={ () => handleTextEditorSave('http://127.0.0.1:8000/api/posts', config) }
 				>
 					<PlusIcon className="h-6 w-6" />
 				</button>
