@@ -125,7 +125,7 @@ export function Post() {
 								maxLength: 30
 							})}
 						/>
-						<span className="absolute -bottom-6 right-0 text-xs text-gray-400">{ title.length }/30</span>
+						<span className={ `absolute -bottom-6 right-0 text-xs ${ title.length === 30 ? 'text-indigo-600' : 'text-gray-400' }` }>{ title.length }/30</span>
 					</div>
 				</div>
 				<div>
@@ -148,11 +148,11 @@ export function Post() {
 						    maxLength: 150
 					    })}
 				    />
-						<span className="absolute -bottom-6 right-0 text-xs text-gray-400">{ description.length }/150</span>
+						<span className={ `absolute -bottom-6 right-0 text-xs ${ description.length === 150 ? 'text-indigo-600' : 'text-gray-400' }` }>{ description.length }/150</span>
 					</div>
 				</div>
 			</div>
-				
+			
 			<div className="relative">
 				<CKEditor
 					editor={ Editor }
