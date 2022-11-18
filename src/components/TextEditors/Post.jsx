@@ -1,69 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getCookie } from '../../helpers';
-import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Editor from 'ckeditor5-custom-build';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { PlusIcon } from '@heroicons/react/24/outline/index.js';
+import { axiosPostEditorInstance, editorConfiguration } from '../../config';
+import { notifyLoading, notifySuccess } from '../../helpers';
 
 import '../../css/textEditor.css';
-import { useForm } from 'react-hook-form';
-
-const editorConfiguration = {
-	toolbar: [
-		'fontSize',
-		'fontColor',
-		'fontFamily',
-		'alignment',
-		'bold',
-		'italic',
-		'underline',
-		'link',
-		'bulletedList',
-		'numberedList',
-		'outdent',
-		'indent',
-		// 'imageUpload',
-		'imageInsert',
-		'blockQuote',
-		'mediaEmbed',
-		'undo',
-		'redo',
-		'code',
-		'codeBlock',
-	],
-	// image: {
-	// 	upload: {
-	// 		types: [ 'png', 'jpg', 'webp', 'gif', 'jpeg' ]
-	// 	}
-	// },
-	simpleUpload: {
-		// The URL that the images are uploaded to.
-		uploadUrl: 'http://127.0.0.1:8000/api/images',
-		
-		// Enable the XMLHttpRequest.withCredentials property.
-		// withCredentials: false,
-		
-		// Headers sent along with the XMLHttpRequest to the upload server.
-		// headers: {
-		// 	'X-CSRF-TOKEN': 'CSRF-Token',
-		// 	Authorization: `Bearer ${ getCookie('token') }`
-		// }
-	}
-};
-
-const config = {
-	visible: 0,
-	published: '2022-10-31'
-}
-
-const initialState = '';
 
 export function Post() {
 	const [ btnActive, setBtnActive ] = useState(true);
-	const [ body, setBody ] = useState(initialState);
-	const { register, handleSubmit, watch } = useForm();
+	const [ body, setBody ] = useState('');
+	const { register, handleSubmit, watch, reset } = useForm();
 	const { id: userId } = useSelector(state => state.user.credentials);
+	const navigate = useNavigate();
 	const title = watch('title', '');
 	const description = watch('description', '');
 	
@@ -74,32 +26,34 @@ export function Post() {
 	}, [ body, title, description ]);
 	
 	const onSubmit = (data) => {
-		if (body.length === 0) return;
+		notifyLoading('Creando post...');
 		
-		axios.post(  'http://127.0.0.1:8000/api/posts',{
-			...config,
+		axiosPostEditorInstance.post(null, {
 			...data,
 			body,
 			'user_id': userId
-		},{
-			'headers': {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${ getCookie('token') }`
-			}
 		}).then(r => {
-			console.log(r);
+			reset({
+				title: '',
+				description: '',
+			});
 			
 			handleTextEditorReset();
-		});
+			
+			navigate('/dashboard/posts');
+			
+			notifySuccess('Post creado');
+		}).catch(err => {
+			throw new Error(`${ err }`);
+		})
 	}
 	
 	const handleTextEditorChange = (e, editor) => {
 		setBody(editor.getData());
 	};
 	
-	
 	const handleTextEditorReset = () => {
-		setBody(initialState);
+		setBody('');
 	};
 	
 	return (
@@ -163,7 +117,7 @@ export function Post() {
 				<button
 					type="submit"
 					disabled={ btnActive }
-					className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300
+					className={ `absolute bottom-4 right-4 inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-3 text-white shadow-sm duration-300 z-10
 						${ btnActive
 							? 'cursor-not-allowed opacity-90'
 							: 'hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'

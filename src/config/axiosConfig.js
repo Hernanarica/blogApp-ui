@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from '../helpers';
 
 export const axiosUserAuthInstance = axios.create({
 	baseURL: import.meta.env.VITE_BASE_URL_API,
@@ -21,5 +22,13 @@ axiosUserRegisterInstance.interceptors.response.use(function (response) {
 });
 
 export const axiosUserLogoutInstance = axios.create({
-	baseURL: import.meta.env.VITE_BASE_URL_API,
+	baseURL: import.meta.env.VITE_BASE_URL_API
+});
+
+export const axiosPostEditorInstance = axios.create({
+	baseURL: `${ import.meta.env.VITE_BASE_URL_API }/posts`,
+	headers: {
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${ getCookie('token') }`
+	}
 });
