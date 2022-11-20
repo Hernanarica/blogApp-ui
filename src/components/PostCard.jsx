@@ -1,7 +1,7 @@
 import moment from 'moment/min/moment-with-locales';
 moment.locale('es-mx');
 
-export function PostCard({ id, title, description, published }) {
+export function PostCard({ id, title, description, published, user }) {
 	return (
 		<div>
 			<div>
@@ -28,7 +28,7 @@ export function PostCard({ id, title, description, published }) {
 				</div>
 				<div className="ml-3">
 					<p className="text-sm font-medium text-gray-900">
-						<a href="#">Paul York</a>
+						<a href="#">{ user.name }</a>
 					</p>
 					<div className="flex space-x-1 text-sm text-gray-500">
 						<time dateTime={ published }>{ moment(published).format('LL') }</time>

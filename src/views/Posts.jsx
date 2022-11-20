@@ -16,6 +16,7 @@ export function Posts() {
 	const getAllPosts = async () => {
 		try {
 			const { data } = await axios.get(`${ import.meta.env.VITE_BASE_URL_API }/posts`);
+			console.log(data);
 			return data;
 		} catch (err) {
 			throw new Error(`${ err }`);
