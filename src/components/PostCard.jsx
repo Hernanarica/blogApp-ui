@@ -1,21 +1,19 @@
-export function PostCard() {
+import moment from 'moment/min/moment-with-locales';
+moment.locale('es-mx');
+
+export function PostCard({ id, title, description, published }) {
 	return (
 		<div>
 			<div>
 				<a href="#" className="inline-block">
 					<span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-						Article
+						Category
 					</span>
 				</a>
 			</div>
 			<a href="#" className="mt-4 block">
-				<p className="text-xl font-semibold text-gray-900">
-					Boost your conversion rate
-				</p>
-				<p className="mt-3 text-base text-gray-500">
-					Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat
-					massa dictumst amet. Sapien tortor lacus arcu.
-				</p>
+				<p className="text-xl font-semibold text-gray-900">{ title }</p>
+				<p className="mt-3 text-base text-gray-500">{ description }</p>
 			</a>
 			<div className="mt-6 flex items-center">
 				<div className="flex-shrink-0">
@@ -33,9 +31,7 @@ export function PostCard() {
 						<a href="#">Paul York</a>
 					</p>
 					<div className="flex space-x-1 text-sm text-gray-500">
-						<time dateTime="2020-03-16">Mar 16, 2020</time>
-						<span aria-hidden="true">·</span>
-						<span>6 min read</span>
+						<time dateTime={ published }>{ moment(published).format('LL') }</time>
 					</div>
 				</div>
 			</div>
