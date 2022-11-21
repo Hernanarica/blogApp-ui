@@ -1,3 +1,4 @@
-export * from './NavbarItem';
-export * from './NavbarPublic';
-export * from './NavbarProtected';
+export * from './Header';
+export * from './HeaderAdmin';
+export * from './HeaderSubscriber';
+export * from './HeaderCollaborators';

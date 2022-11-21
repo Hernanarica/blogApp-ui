@@ -1,3 +1,3 @@
 export * from './Layout/Footer';
-export * from './Layout/Header';
+export * from './Header/Header.jsx';
 export * from './PostCard';
