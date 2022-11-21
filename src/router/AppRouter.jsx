@@ -3,6 +3,7 @@ import { Home, Login, Register, Posts } from "../views";
 import { useSelector } from 'react-redux';
 import { Layout } from '../views/Layouts';
 import { AdminRouter, CollaboratorRouter, SubscriberRouter } from './Roles';
+import { NotFound } from '../components';
 
 export function AppRouter() {
 	const { user: { credentials } } = useSelector(state => state);
@@ -29,7 +30,7 @@ export function AppRouter() {
 					<Route path="iniciar-sesion" element={ <Login /> } />
 					<Route path="registrate" element={ <Register /> } />
 					
-					<Route path="*" element={ <h1>Not found 😓</h1> } />
+					<Route path="*" element={ <NotFound /> } />
 				</Route>
 				
 			</Routes>

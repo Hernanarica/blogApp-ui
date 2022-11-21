@@ -3,6 +3,7 @@ import { Dashboard, Home, Posts, PostsDashboard } from '../../views';
 import { LayoutAdmin } from '../../views/Layouts/LayoutAdmin';
 import { Main } from '../../views/Dashboard/Main.jsx';
 import { CreatePost } from '../../views/Posts/CreatePost.jsx';
+import { NotFound } from '../../components';
 
 export function AdminRouter() {
 	return (
@@ -23,7 +24,7 @@ export function AdminRouter() {
 					
 				</Route>
 				
-				<Route path="*" element={ <h1>Not found 😓</h1> } />
+				<Route path="*" element={ <NotFound /> } />
 			</Route>
 			
 		</Routes>
