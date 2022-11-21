@@ -11,6 +11,7 @@ export function CollaboratorRouter() {
 				<Route path="posts" element={ <Posts /> } />
 				<Route path="collaborator" element={ <h1> Collaborator </h1> } />
 				
+				<Route path="*" element={ <h1>Not found 😓</h1> } />
 			</Route>
 		</Routes>
 	);

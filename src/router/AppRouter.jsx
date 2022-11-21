@@ -34,6 +34,8 @@ export function AppRouter() {
 					<Route path="posts" element={ <Posts /> } />
 					<Route path="iniciar-sesion" element={ <Login /> } />
 					<Route path="registrate" element={ <Register /> } />
+					
+					<Route path="*" element={ <h1>Not found 😓</h1> } />
 				</Route>
 				
 			</Routes>

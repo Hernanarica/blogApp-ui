@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline/index.js';
 import { Avatar } from '../User/Avatar.jsx';
-import { NavbarAdmin } from '../Navbar/NavbarAdmin.jsx';
+import { NavbarAdmin } from '../Navbar';
 
 export function HeaderAdmin() {
 	const  [ isOpen, setIsOpen ] = useState(false);

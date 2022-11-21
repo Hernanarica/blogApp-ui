@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline/index.js';
 import { Avatar } from '../User/Avatar.jsx';
-import { NavbarSubscriber } from '../Navbar/NavbarSubscriber';
+import { NavbarSubscriber } from '../Navbar';
 
 export function HeaderSubscriber() {
 	const  [ isOpen, setIsOpen ] = useState(false);

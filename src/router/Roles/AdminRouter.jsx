@@ -23,6 +23,7 @@ export function AdminRouter() {
 					
 				</Route>
 				
+				<Route path="*" element={ <h1>Not found 😓</h1> } />
 			</Route>
 			
 		</Routes>

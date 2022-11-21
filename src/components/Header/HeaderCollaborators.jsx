@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline/index.js';
 import { Avatar } from '../User/Avatar.jsx';
 import { NavbarCollaborator } from '../Navbar';
