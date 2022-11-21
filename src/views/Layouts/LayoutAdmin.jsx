@@ -1,13 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Footer } from '../../components';
 import { HeaderAdmin } from '../../components/Header';
 
 export function LayoutAdmin() {
+	const { pathname } = useLocation();
+	
 	return (
 		<>
-			<HeaderAdmin />
+			{ !pathname.includes('/dashboard') && <HeaderAdmin /> }
 			<Outlet />
-			<Footer />
+			{ !pathname.includes('/dashboard') && <Footer /> }
 		</>
 	);
 }
