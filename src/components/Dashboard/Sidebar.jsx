@@ -1,16 +1,17 @@
-import { SidebarItem } from './SidebarItem';
-import { ArrowLeftOnRectangleIcon, ArrowUturnLeftIcon } from '@heroicons/react/24/outline/index.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logoutThunk } from '../../state/thunks/logoutThunk.js';
+import { ArrowLeftOnRectangleIcon, ArrowUturnLeftIcon } from '@heroicons/react/24/outline/index.js';
+import { SidebarItem } from './SidebarItem';
+import { logoutThunk } from '../../state/thunks';
 
 export function Sidebar() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	
 	const handleLogout = () => {
 		dispatch(logoutThunk());
 		
-		window.localStorage.removeItem('pathname');
+		navigate('/');
 	};
 	
 	return (

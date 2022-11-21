@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { loginThunk }  from "../state/thunks/index.js";
+import { loginThunk }  from "../state/thunks";
 import { FormNotificationInputError } from '../components/Form/FormNotificationInputError';
 
 export function Login() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { handleSubmit, register, formState: { errors } } = useForm();
 
 	const onSubmit = (userData) => {
 		dispatch(loginThunk(userData));
+		
+		navigate('/');
 	}
 
 	return (

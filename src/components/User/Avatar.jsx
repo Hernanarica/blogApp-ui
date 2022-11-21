@@ -1,14 +1,23 @@
-import { NavLink } from 'react-router-dom';
-import { LogoutBtn } from '../Buttons/index.js';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutThunk } from '../../state/thunks';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline/index.js';
 
 export function Avatar() {
 	const { image } = useSelector(state => state.user.credentials)
 	const [showMenu, setShowMenu ] = useState(false);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	
 	const handleShowMenu = () => {
 		setShowMenu(!showMenu);
+	};
+	
+	const handleLogout = () => {
+		dispatch(logoutThunk());
+		
+		navigate('/');
 	};
 	
 	return (
@@ -26,7 +35,12 @@ export function Avatar() {
 							</NavLink>
 						</li>
 						<li className="hover:bg-gray-100">
-							<LogoutBtn />
+							<button className="flex items-center gap-1 w-full px-2 py-2" onClick={ handleLogout }>
+								<span>
+									<ArrowLeftOnRectangleIcon className="w-5 h-5" />
+								</span>
+								Logout
+							</button>
 						</li>
 					</ul>
 				)
