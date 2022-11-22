@@ -1,8 +1,6 @@
-import { routes } from '../../router/routes.js';
 import { NavbarItem } from './NavbarItem.jsx';
+import { navbarPublicRoutes } from '../../router/routes.js';
 
 export function Navbar() {
-	const { publicRoutes } = routes;
-	
-	return publicRoutes.map(route => <NavbarItem key={ route.name } { ...route } /> )
+	return navbarPublicRoutes.map(route => <NavbarItem key={ route.name } { ...route } /> )
 }
