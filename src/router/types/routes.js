@@ -17,7 +17,10 @@ export const collaboratorsRoutes = {
 	posts: '/posts',
 	contact: '/contacto',
 	postCreate: '/create-post',
-	profile: '/perfil'
+	profile: '/perfil',
+	publications: {
+		index: 'publicaciones'
+	}
 };
 
 export const adminRoutes = {
@@ -33,4 +36,8 @@ export const adminRoutes = {
 		},
 		users: 'usuarios'
 	}
+};
+
+export const routeParams = {
+	userName: ':username'
 };

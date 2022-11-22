@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { LayoutCollaborator, Home, Posts } from '../../views';
+import { LayoutCollaborator, Home, Posts, Publications } from '../../views';
 import { NotFound } from '../../components';
-import { collaboratorsRoutes } from '../types/routes.js';
+import { collaboratorsRoutes, routeParams } from '../types/routes.js';
 
 export function CollaboratorRouter() {
 	return (
@@ -11,6 +11,10 @@ export function CollaboratorRouter() {
 				<Route index element={ <Home /> } />
 				<Route path={ collaboratorsRoutes.posts } element={ <Posts /> } />
 				<Route path="collaborator" element={ <h1> Collaborator </h1> } />
+				
+				<Route path={ routeParams.userName }>
+					<Route path={ collaboratorsRoutes.publications.index } element={ <Publications /> } />
+				</Route>
 				
 				<Route path="*" element={ <NotFound /> } />
 			</Route>

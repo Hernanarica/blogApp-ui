@@ -5,7 +5,8 @@ import { logoutThunk } from '../../state/thunks';
 import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline/index.js';
 
 export function Avatar() {
-	const { image } = useSelector(state => state.user.credentials)
+	const { name, image } = useSelector(state => state.user.credentials);
+	console.log(name);
 	const [showMenu, setShowMenu ] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -32,6 +33,11 @@ export function Avatar() {
 						<li className="hover:bg-gray-100">
 							<NavLink to="/dashboard/profile" className="block p-2">
 								Profile
+							</NavLink>
+						</li>
+						<li className="hover:bg-gray-100">
+							<NavLink to={ `${ name }/publicaciones` } className="block p-2">
+								Mis publicaciones
 							</NavLink>
 						</li>
 						<li className="hover:bg-gray-100">
