@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { Dashboard, Home, Posts, DashboardPosts, DashboardMain, LayoutAdmin, CreatePost } from '../../views';
+import { Dashboard, Home, Posts, DashboardPosts, DashboardMain, LayoutAdmin, CreatePost, Profile } from '../../views';
 import { NotFound } from '../../components';
-import { adminRoutes } from '../types/routes.js';
+import { adminRoutes, routeParams } from '../types/routes.js';
 
 export function AdminRouter() {
 	return (
@@ -10,6 +10,7 @@ export function AdminRouter() {
 			<Route path={ adminRoutes.home } element={ <LayoutAdmin /> }>
 				<Route index element={ <Home /> } />
 				<Route path={ adminRoutes.posts } element={ <Posts /> } />
+				<Route path={ routeParams.userName } element={ <Profile /> } />
 				
 				<Route path={ adminRoutes.dashboard.index } element={ <Dashboard /> }>
 					<Route index element={ <DashboardMain /> } />

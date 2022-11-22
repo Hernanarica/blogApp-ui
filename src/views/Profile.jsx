@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export function Profile() {
-	const { credentials } = useSelector(state => state.auth);
+	const { credentials } = useSelector(state => state.user);
 	
 	return (
 		<>

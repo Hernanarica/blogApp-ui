@@ -31,7 +31,7 @@ export function Avatar() {
 				showMenu && (
 					<ul className="absolute top-10 right-0 bg-gray-50 text-gray-900 text-left w-40 rounded-md overflow-hidden z-[2]">
 						<li className="hover:bg-gray-100">
-							<NavLink to="/dashboard/profile" className="block p-2">
+							<NavLink to={ name } className="block p-2">
 								Profile
 							</NavLink>
 						</li>

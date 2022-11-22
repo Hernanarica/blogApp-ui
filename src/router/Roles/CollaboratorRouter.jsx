@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { LayoutCollaborator, Home, Posts, Publications } from '../../views';
+import { LayoutCollaborator, Home, Posts, Publications , Profile } from '../../views';
 import { NotFound } from '../../components';
 import { collaboratorsRoutes, routeParams } from '../types/routes.js';
 
@@ -11,6 +11,7 @@ export function CollaboratorRouter() {
 				<Route index element={ <Home /> } />
 				<Route path={ collaboratorsRoutes.posts } element={ <Posts /> } />
 				<Route path="collaborator" element={ <h1> Collaborator </h1> } />
+				<Route path={ routeParams.userName } element={ <Profile /> } />
 				
 				<Route path={ routeParams.userName }>
 					<Route path={ collaboratorsRoutes.publications.index } element={ <Publications /> } />
