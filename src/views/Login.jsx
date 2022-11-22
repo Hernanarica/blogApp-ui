@@ -9,8 +9,10 @@ export function Login() {
 	const navigate = useNavigate();
 	const { handleSubmit, register, formState: { errors } } = useForm();
 
-	const onSubmit = (userData) => {
-		dispatch(loginThunk(userData));
+	const onSubmit = async (userData) => {
+		const status = await dispatch(loginThunk(userData));
+		
+		if (status === 'error') return;
 		
 		navigate('/');
 	}

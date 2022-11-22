@@ -8,9 +8,12 @@ export function loginThunk(userData) {
 			notifyLoading('Comprobando credenciales...');
 			
 			const data = await loginService(userData);
-	
-			if (data.status === 'error') return notifyError(data.message);
-	
+			
+			if (data.status === 'error') {
+				notifyError(data.message);
+				return data.status;
+			}
+			
 			const { data: credentials, token } = data;
 			
 			setCookie('token', token);
