@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { Dashboard, Home, Posts, PostsDashboard } from '../../views';
+import { Dashboard, Home, Posts, DashboardPosts } from '../../views';
 import { LayoutAdmin } from '../../views/Layouts/LayoutAdmin';
-import { Main } from '../../views/Dashboard/Main.jsx';
+import { DashboardMain } from '../../views/Dashboard/DashboardMain.jsx';
 import { CreatePost } from '../../views/Posts/CreatePost.jsx';
 import { NotFound } from '../../components';
 import { adminRoutes } from '../types/routes.js';
@@ -15,10 +15,10 @@ export function AdminRouter() {
 				<Route path={ adminRoutes.posts } element={ <Posts /> } />
 				
 				<Route path={ adminRoutes.dashboard.index } element={ <Dashboard /> }>
-					<Route index element={ <Main /> } />
+					<Route index element={ <DashboardMain /> } />
 					
 					<Route path={ adminRoutes.dashboard.posts.index }>
-						<Route index element={ <PostsDashboard /> } />
+						<Route index element={ <DashboardPosts /> } />
 						<Route path={ adminRoutes.dashboard.posts.create } element={ <CreatePost /> } />
 					</Route>
 					

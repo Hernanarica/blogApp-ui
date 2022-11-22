@@ -1,3 +1,3 @@
-export * from './PostsDashboard.jsx';
-export * from './Users';
+export * from './DashboardPosts.jsx';
+export * from './DashboardUsers';
 export * from './Dashboard';

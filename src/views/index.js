@@ -5,5 +5,5 @@ export * from './Layouts/Layout';
 export * from './Profile';
 export * from './Register';
 export * from './Dashboard';
-export * from './Dashboard/PostsDashboard';
-export * from './Dashboard/Users';
+export * from './Dashboard/DashboardPosts.jsx';
+export * from './Dashboard/DashboardUsers';

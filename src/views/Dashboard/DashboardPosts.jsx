@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export function PostsDashboard() {
+export function DashboardPosts() {
 	return (
 		<div className="flex flex-col gap-14">
 			<div className="flex justify-between">
