@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register, Posts } from "../views";
 import { useSelector } from 'react-redux';
-import { Layout } from '../views/Layouts';
+import { Home, Login, Register, Posts, Layout } from "../views";
 import { AdminRouter, CollaboratorRouter, SubscriberRouter } from './Roles';
 import { NotFound } from '../components';
 import { routes } from './types/routes.js';

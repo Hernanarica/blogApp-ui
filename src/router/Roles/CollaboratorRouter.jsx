@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { LayoutCollaborator } from '../../views/Layouts/LayoutCollaborator';
-import { Home, Posts } from '../../views';
+import { LayoutCollaborator, Home, Posts } from '../../views';
 import { NotFound } from '../../components';
 import { collaboratorsRoutes } from '../types/routes.js';
 

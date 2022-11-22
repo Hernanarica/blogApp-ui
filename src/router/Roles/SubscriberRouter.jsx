@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { LayoutSuscriptor } from '../../views/Layouts/LayoutSuscriptor';
-import { Home, Posts } from '../../views';
+import { LayoutSuscriptor, Home, Posts } from '../../views';
 import { NotFound } from '../../components';
 import { subscriberRoutes } from '../types/routes.js';
 

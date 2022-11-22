@@ -1,8 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Dashboard, Home, Posts, DashboardPosts } from '../../views';
-import { LayoutAdmin } from '../../views/Layouts/LayoutAdmin';
-import { DashboardMain } from '../../views/Dashboard/DashboardMain.jsx';
-import { CreatePost } from '../../views/Posts/CreatePost.jsx';
+import { Dashboard, Home, Posts, DashboardPosts, DashboardMain, LayoutAdmin, CreatePost } from '../../views';
 import { NotFound } from '../../components';
 import { adminRoutes } from '../types/routes.js';
 
