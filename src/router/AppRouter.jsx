@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Layout } from '../views/Layouts';
 import { AdminRouter, CollaboratorRouter, SubscriberRouter } from './Roles';
 import { NotFound } from '../components';
+import { routes } from './types/routes.js';
 
 export function AppRouter() {
 	const { user: { credentials } } = useSelector(state => state);
@@ -24,11 +25,11 @@ export function AppRouter() {
 		<>
 			<Routes>
 				
-				<Route path="/" element={ <Layout /> }>
+				<Route path={ routes.home } element={ <Layout /> }>
 					<Route index element={ <Home /> } />
-					<Route path="posts" element={ <Posts /> } />
-					<Route path="iniciar-sesion" element={ <Login /> } />
-					<Route path="registrate" element={ <Register /> } />
+					<Route path={ routes.login } element={ <Login /> } />
+					<Route path={ routes.register } element={ <Register /> } />
+					<Route path={ routes.posts } element={ <Posts /> } />
 					
 					<Route path="*" element={ <NotFound /> } />
 				</Route>
