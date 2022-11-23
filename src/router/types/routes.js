@@ -39,5 +39,6 @@ export const adminRoutes = {
 };
 
 export const routeParams = {
-	userName: ':username'
+	userName: ':username',
+	postTitle: ':title',
 };

@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { Home, Login, Register, Posts, Layout } from "../views";
+import { Home, Login, Register, Posts, Layout, PostDetail } from "../views";
 import { AdminRouter, CollaboratorRouter, SubscriberRouter } from './Roles';
 import { NotFound } from '../components';
-import { routes } from './types/routes.js';
+import { routeParams, routes } from './types/routes.js';
 
 export function AppRouter() {
 	const { user: { credentials } } = useSelector(state => state);
@@ -28,7 +28,10 @@ export function AppRouter() {
 					<Route index element={ <Home /> } />
 					<Route path={ routes.login } element={ <Login /> } />
 					<Route path={ routes.register } element={ <Register /> } />
-					<Route path={ routes.posts } element={ <Posts /> } />
+					<Route path={ routes.posts }>
+						<Route index element={ <Posts /> } />
+						<Route path={ routeParams.postTitle } element={ <PostDetail /> } />
+					</Route>
 					
 					<Route path="*" element={ <NotFound /> } />
 				</Route>

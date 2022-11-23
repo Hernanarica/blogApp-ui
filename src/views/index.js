@@ -1,5 +1,6 @@
 export * from './Posts';
 export * from './Posts/CreatePost';
+export * from './Posts/PostDetail';
 export * from './Publications/Publications';
 export * from './Publications/PublicationsCreate';
 export * from './Publications/PublicationsEdit';
