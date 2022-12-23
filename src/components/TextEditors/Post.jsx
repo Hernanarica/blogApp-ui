@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Editor from 'ckeditor5-custom-build';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { PlusIcon } from '@heroicons/react/24/outline/index.js';
-import { axiosPostEditorInstance, editorConfiguration } from '../../config';
+import { editorConfiguration } from '../../config';
 import { notifyLoading, notifySuccess } from '../../helpers';
 
 import '../../css/textEditor.css';
@@ -18,44 +18,36 @@ export function Post() {
 	const navigate = useNavigate();
 	const title = watch('title', '');
 	const description = watch('description', '');
-	
+
 	useEffect(() => {
 		(body.length > 0 && title.length > 0 && description.length > 0)
 			? setBtnActive(false)
 			: setBtnActive(true)
 	}, [ body, title, description ]);
-	
+
 	const onSubmit = (data) => {
-		notifyLoading('Creando post...');
-		
-		axiosPostEditorInstance.post(null, {
+		// notifyLoading('Creando post...');
+
+		const postData = {
 			...data,
 			body,
 			'user_id': userId
-		}).then(r => {
-			reset({
-				title: '',
-				description: '',
-			});
-			
-			handleTextEditorReset();
-			
-			navigate('/dashboard/posts');
-			
-			notifySuccess('Post creado');
-		}).catch(err => {
-			throw new Error(`${ err }`);
-		})
+		}
+
+		console.log('creando post...');
+		// navigate('/dashboard/posts');
+
+		// notifySuccess('Post creado');
 	}
-	
+
 	const handleTextEditorChange = (e, editor) => {
 		setBody(editor.getData());
 	};
-	
+
 	const handleTextEditorReset = () => {
 		setBody('');
 	};
-	
+
 	return (
 		<form className="flex flex-col gap-7" onSubmit={ handleSubmit(onSubmit) }>
 			<div className="space-y-5">
@@ -106,7 +98,7 @@ export function Post() {
 					</div>
 				</div>
 			</div>
-			
+
 			<div className="relative">
 				<CKEditor
 					editor={ Editor }
