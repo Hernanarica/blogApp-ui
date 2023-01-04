@@ -1,5 +1,5 @@
 import { createCredentialsAdapter } from '../adapters/createCredentialsAdapter.js';
-import { axiosUserAuthInstance } from '../config/axiosConfig.js';
+import { axiosUserAuthInstance } from '../config';
 
 axiosUserAuthInstance.interceptors.response.use(function (response) {
 	if (response.data.status === 'error') {
@@ -7,7 +7,7 @@ axiosUserAuthInstance.interceptors.response.use(function (response) {
 	}
 	
 	return {
-		data: createCredentialsAdapter(response.data.data),
+		user: createCredentialsAdapter(response.data.user),
 		status: response.data.status,
 		token: response.data.token
 	};

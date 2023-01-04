@@ -1,9 +1,9 @@
-export function createCredentialsAdapter(data) {
+export function createCredentialsAdapter(user) {
 	return {
-		id: data.id,
-		role: data.role,
-		name: data.name,
-		email: data.email,
-		image: data.image
+		id: user.id,
+		role: user.role,
+		name: user.name,
+		email: user.email,
+		image: user.image
 	};
 }
