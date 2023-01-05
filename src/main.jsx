@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from "./providers/RouterProvider.jsx";
-import { StoreProvider } from "./providers/StoreProvider";
+import { RouterProvider, StoreProvider, ReactQueryProvider } from './providers';
 import App from './App'
 
 import './css/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <StoreProvider>
-        <RouterProvider>
+      <RouterProvider>
+        <ReactQueryProvider>
           <App />
-        </RouterProvider>
+        </ReactQueryProvider>
+      </RouterProvider>
     </StoreProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )

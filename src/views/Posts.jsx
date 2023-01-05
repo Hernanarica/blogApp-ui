@@ -1,23 +1,28 @@
 import { useState } from 'react';
+import {useQuery} from "@tanstack/react-query";
 import { Wrapper } from '../components/Utils/Wrapper';
 import { PostCard } from '../components';
-import { useGetPostsQuery } from '../state/services';
+import { getPosts } from "../services/postsServices.js";
 
 export function Posts() {
 	const [ page, setPage ] = useState(1);
-	const { data: posts, isFetching } = useGetPostsQuery(page);
-	
-	if (isFetching) {
-		return <h1>Loading</h1>
-	}
-	
-	const { data, meta } = posts;
-	
+	const { isLoading, error, data } = useQuery({
+		queryKey: ['posts', page],
+		queryFn: () => getPosts(page),
+		keepPreviousData: true
+	});
+
+	if (isLoading) return <h2>Loading...</h2>
+
+	if (error) return <h2>Error al traer la informacion</h2>
+
+	const { posts, meta } = data;
+
 	const handleNextPaginator = () => {
 		if (page >= meta.last_page) return;
 		setPage(page + 1);
 	}
-	
+
 	const handlePreviousPaginator = () => {
 		if (page <= 1) return;
 		setPage(page - 1);
@@ -27,7 +32,7 @@ export function Posts() {
 			<div className="px-2">
 				<div className="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
 					{
-						data.map(post => <PostCard { ...post } key={ post.id } />)
+						posts.map(post => <PostCard { ...post } key={ post.id } />)
 					}
 				</div>
 				<nav
