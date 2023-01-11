@@ -1,26 +1,25 @@
 import { useParams } from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
-import { useGetPostByIdQuery } from '../../state/services';
+import { usePost } from "../../hooks/usePost.jsx";
 
 moment.locale('es-mx');
 
 export function PostDetail() {
 	const { title } = useParams();
-	const { data: post, isFetching } = useGetPostByIdQuery(title);
-	
-	if (isFetching) {
+	const { postQuery } = usePost(title);
+
+	if (postQuery.isFetching) {
 		return <h1>Loading...</h1>
 	}
 	
-	const { data: { body, published } } = post;
 	return (
-		<section class="min-h-[calc(100vh-56px)] p-2">
-			<h2 class="sr-only">{ title }</h2>
+		<section className="min-h-[calc(100vh-56px)] p-2">
+			<h2 className="sr-only">{ postQuery.data.post.title }</h2>
 			<div className="mx-auto max-w-5xl">
-				<article dangerouslySetInnerHTML={{ __html: body }}>
+				<article dangerouslySetInnerHTML={{ __html: postQuery.data.post.body }}>
 				</article>
-				<div class="text-right">
-					<time dateTime={ published } class="text-gray-500">{ moment(published).format('LL') }</time>
+				<div className="text-right">
+					<time dateTime={ postQuery.data.post.published } className="text-gray-500">{ moment(postQuery.data.post.published).format('LL') }</time>
 				</div>
 			</div>
 		</section>

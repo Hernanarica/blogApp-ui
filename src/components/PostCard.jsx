@@ -1,5 +1,6 @@
 import moment from 'moment/min/moment-with-locales';
 import { Link } from 'react-router-dom';
+import { usePost } from "../hooks/usePost.jsx";
 moment.locale('es-mx');
 
 export function PostCard({ id, title, description, published, user }) {
