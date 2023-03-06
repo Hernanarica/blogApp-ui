@@ -6,7 +6,7 @@ import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline/index.js';
 
 export function Avatar() {
 	const { name, image } = useSelector(state => state.user.credentials);
-	console.log(name);
+	// console.log('re render');
 	const [showMenu, setShowMenu ] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
